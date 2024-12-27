@@ -2,10 +2,10 @@
 
 1.1 Clase Miembro
 
-1.1.1 Definir String Alias: Programador1
-1.1.2 Definir String Correo: Programador1
-1.1.3 Definir Int Nº Asociaciones: Programador1
-1.1.4 Crear funciones de clase: Programador1
+1.1.1 Definir String Alias: Programador1 --> Fet
+1.1.2 Definir String Correo: Programador1 --> Fet
+1.1.3 Definir Int Nº Asociaciones: Programador1 --> Fet
+1.1.4 Crear funciones de clase: Programador1 --> Fet
 1.2 Clase Miembro Alumno
 
 1.2.1 Definir Enum Matrícula: Programador1

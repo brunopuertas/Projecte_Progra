@@ -1,3 +1,5 @@
+package tipusMembre;
+
 public class professor extends membre {
     private String nomDepartament;
     private int numDespatx;

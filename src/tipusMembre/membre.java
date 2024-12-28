@@ -1,3 +1,5 @@
+package tipusMembre;
+
 public class membre {
     protected String alias; 
     protected String correuElectronic; 
@@ -36,7 +38,7 @@ public class membre {
      * Metode que retorna el numero d'associacions del membre
      * @return associacions
      */
-    public int getAssociacions() {
+    public int getAssociacions(){
         return associacions;
     }
 

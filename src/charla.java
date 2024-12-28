@@ -1,17 +1,18 @@
-import java.util.*;
+import java.util.Date;
+import tipusMembre.membre;
 
-public class Charla {
+public class charla {
     // Atributos
     private Date fecha;
-    private Miembro[] miembros;
+    private final membre[] membres;
     private int asistencias;
     private float mediaValoracion;
     private int totalMiembros;
 
     // Constructor
-    public Charla(Date fecha, int maxMiembros, int asistencias, float mediaValoracion) {
+    public charla(Date fecha, int maxMiembros, int asistencias, float mediaValoracion) {
         this.fecha = fecha;
-        this.miembros = new Miembro[maxMiembros];
+        this.membres = new membre[maxMiembros];
         this.asistencias = asistencias;
         this.mediaValoracion = mediaValoracion;
         this.totalMiembros = 0;
@@ -26,8 +27,11 @@ public class Charla {
         this.fecha = fecha;
     }
 
-    public Miembro[] getMiembros() {
-        return miembros;
+    public membre getMembre(int index) {
+            if (index >= 0 && index < membres.length && membres[index] != null) {
+                return membres[index].copia();
+            }
+            return null;
     }
 
     public int getAsistencias() {
@@ -47,9 +51,9 @@ public class Charla {
     }
 
     // Métodos de clase
-    public void agregarMiembro(Miembro miembro) {
-        if (totalMiembros < miembros.length) {
-            miembros[totalMiembros++] = miembro;
+    public void agregarMiembro(membre membre) {
+        if (totalMiembros < membres.length) {
+            membres[totalMiembros++] = membre.copia();
         } else {
             System.out.println("No se pueden agregar más de 3 miembros a la charla.");
         }
@@ -69,15 +73,16 @@ public class Charla {
     }
 
     public membre obtenerMiembroConMayorParticipacion() {
-        Miembro max = null;
-        for (Miembro m : miembros) {
-            if (m != null && (max == null || m.getNumeroAsociaciones() > max.getNumeroAsociaciones())) {
+        membre max = null;
+        for (membre m : membres) {
+            if (m != null && (max == null || m.getAssociacions() > max.getAssociacions())) {
                 max = m;
             }
         }
         return max;
     }
 
+    @Override
     public String toString() {
         return "Charla el " + fecha + ", Asistencias: " + asistencias + ", Valoración Media: " + mediaValoracion;
     }

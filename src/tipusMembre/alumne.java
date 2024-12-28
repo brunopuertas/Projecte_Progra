@@ -1,3 +1,5 @@
+package tipusMembre;
+
 public class alumne extends membre {
     private String ensenyament; // Ensenyament amb les seves sigles
     private int dataMatricula; 

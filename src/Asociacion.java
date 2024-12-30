@@ -1,6 +1,4 @@
-import tipusMembre.membre;
-import tipusMembre.professor;
-import tipusMembre.alumne;
+import tipusMembre.*;
 
 public class Asociacion {
     // Atributos

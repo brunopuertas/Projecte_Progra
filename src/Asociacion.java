@@ -12,7 +12,7 @@ public class Asociacion {
     private int totalAcciones;
 
     // Constructor
-    public Asociacion(String nombre, String correo, int maxMiembros, int maxAcciones) {
+    public asociacion(String nombre, String correo, int maxMiembros, int maxAcciones) {
         this.nombre = nombre;
         this.correo = correo;
         this.listaMembres = new membre[maxMiembros];

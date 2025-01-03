@@ -1,53 +1,78 @@
 import tipusMembre.*;
 
-public class Asociacion {
-    // Atributos
-    private final String nombre;
-    private final String correo;
-    private final membre[] listaMembres;
-    private Accion[] listaAccions;
+public class Associacio {
+    // Atributs
+    private final String nom;
+    private final String correu;
+    private final Membre[] llistaMembres;
+    private final Accio[] llistaAccions;
     private int totalMembres;
-    private int totalAcciones;
+    private int totalAccions;
 
     // Constructor
-    public asociacion(String nombre, String correo, int maxMiembros, int maxAcciones) {
-        this.nombre = nombre;
-        this.correo = correo;
-        this.listaMembres = new membre[maxMiembros];
-        this.listaAcciones = new Accion[maxAcciones];
+    public Associacio(String nom, String correu, int maxMembres, int maxAccions) {
+        this.nom = nom;
+        this.correu = correu;
+        this.llistaMembres = new Membre[maxMembres];
+        this.llistaAccions = new Accio[maxAccions];
         this.totalMembres = 0;
-        this.totalAcciones = 0;
+        this.totalAccions = 0;
     }
 
-    // Método para obtener el nombre
-    public String getNombre() {
-        return nombre;
+    // Mètode per obtenir el nom
+    public String getNom() {
+        return nom;
     }
 
-    // Método para obtener el correo
-    public String getCorreo() {
-        return correo;
+    // Mètode per obtenir el correu
+    public String getCorreu() {
+        return correu;
     }
 
-    // Método para listar miembros con filtro
-    public membre[] llistaMembresFiltrat(boolean soloAlumnos, boolean soloProfesores) {
-        membre[] resultado = new membre[totalMembres];
+    // Afegir membre
+    public boolean afegirMembre(Membre membre) {
+        if (totalMembres < llistaMembres.length) {
+            llistaMembres[totalMembres++] = membre;
+            return true;
+        }
+        return false;
+    }
+
+    // Afegir acció
+    public boolean afegirAccio(Accio accio) {
+        if (totalAccions < llistaAccions.length) {
+            llistaAccions[totalAccions++] = accio;
+            return true;
+        }
+        return false;
+    }
+
+    // Llistar membres amb filtre
+    public Membre[] llistaMembresFiltrat(boolean solsAlumnes, boolean solsProfessors) {
         int contador = 0;
         for (int i = 0; i < totalMembres; i++) {
-            membre m = listaMembres[i];
-            if (soloAlumnos && m instanceof alumne) {
-                resultado[contador++] = m;
-            } else if (soloProfesores && m instanceof professor) {
-                resultado[contador++] = m;
-            } else if (!soloAlumnos && !soloProfesores) {
-                resultado[contador++] = m;
+            Membre m = llistaMembres[i];
+            if ((solsAlumnes && m instanceof Alumne) || (solsProfessors && m instanceof Professor) || (!solsAlumnes && !solsProfessors)) {
+                contador++;
             }
         }
-        return Arrays.copyOf(resultado, contador);
+        Membre[] finalResultat = new Membre[contador];
+        int index = 0;
+        for (int i = 0; i < totalMembres; i++) {
+            Membre m = llistaMembres[i];
+            if ((solsAlumnes && m instanceof Alumne) || (solsProfessors && m instanceof Professor) || (!solsAlumnes && !solsProfessors)) {
+                finalResultat[index++] = m;
+            }
+        }
+        return finalResultat;
     }
 
-    // Método para listar acciones
-    public Accion[] llistaAccions() {
-        return Arrays.copyOf(listaAcciones, totalAcciones);
+    // Llistar accions
+    public Accio[] llistaAccions() {
+        Accio[] resultat = new Accio[totalAccions];
+        for (int i = 0; i < totalAccions; i++) {
+            resultat[i] = llistaAccions[i];
+        }
+        return resultat;
     }
 }

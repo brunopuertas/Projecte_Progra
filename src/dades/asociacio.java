@@ -1,20 +1,23 @@
-import tipusMembre.*;
+package dades;
 
-public class Asociacion {
+import dades.tipusMembre.*;
+
+
+public class asociacio {
     // Atributos
     private final String nombre;
     private final String correo;
     private final membre[] listaMembres;
-    private Accion[] listaAccions;
+    private accio[] listaAccions;
     private int totalMembres;
     private int totalAcciones;
 
     // Constructor
-    public asociacion(String nombre, String correo, int maxMiembros, int maxAcciones) {
+    public asociacio (String nombre, String correo, int maxMiembros, int maxAcciones) {
         this.nombre = nombre;
         this.correo = correo;
         this.listaMembres = new membre[maxMiembros];
-        this.listaAcciones = new Accion[maxAcciones];
+        this.listaAccions = new Accio[maxAcciones];
         this.totalMembres = 0;
         this.totalAcciones = 0;
     }
@@ -47,7 +50,9 @@ public class Asociacion {
     }
 
     // Método para listar acciones
-    public Accion[] llistaAccions() {
+    /*
+    public Accio[] llistaAccions() {
         return Arrays.copyOf(listaAcciones, totalAcciones);
     }
+     */
 }

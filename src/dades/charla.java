@@ -1,5 +1,6 @@
+package dades;
+import dades.tipusMembre.*;
 import java.util.Date;
-import tipusMembre.membre;
 
 public class charla {
     // Atributos

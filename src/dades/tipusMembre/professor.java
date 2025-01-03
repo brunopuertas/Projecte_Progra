@@ -1,4 +1,4 @@
-package tipusMembre;
+package dades.tipusMembre;
 
 public class professor extends membre {
     private String nomDepartament;

@@ -1,4 +1,4 @@
-package tipusMembre;
+package dades.tipusMembre;
 
 public class membre {
     protected String alias; 

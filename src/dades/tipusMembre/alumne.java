@@ -1,4 +1,4 @@
-package tipusMembre;
+package dades.tipusMembre;
 
 public class alumne extends membre {
     private String ensenyament; // Ensenyament amb les seves sigles

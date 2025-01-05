@@ -1,14 +1,15 @@
 package dades.tipusMembre;
 
+import dades.SiglasTitulacio;
+
 public class alumne extends membre {
-    private String ensenyament; // Ensenyament amb les seves sigles
+    private SiglasTitulacio ensenyament; // Usamos el enum SiglasTitulacio
     private int dataMatricula; 
     private boolean graduat;
 
-
     /**
      * Constructor inicialitzat amb parametres d'entrada
-     * Encarregat de crearla classe alumnes amb els parametres d'entrada
+     * Encarregat de crear la classe alumnes amb els parametres d'entrada
      * @param alias
      * @param correuElectronic
      * @param associacions
@@ -16,7 +17,7 @@ public class alumne extends membre {
      * @param dataMatricula
      * @param graduat
      */
-    public alumne (String alias, String correuElectronic, int associacions, String ensenyament, int dataMatricula, boolean graduat) {
+    public alumne (String alias, String correuElectronic, int associacions, SiglasTitulacio ensenyament, int dataMatricula, boolean graduat) {
         super(alias, correuElectronic, associacions);
         this.ensenyament = ensenyament;
         this.dataMatricula = dataMatricula;
@@ -27,7 +28,7 @@ public class alumne extends membre {
      * Metode que retorna l'ensenyament de l'alumne
      * @return ensenyament
      */
-    public String getEnsenyament () {
+    public SiglasTitulacio getEnsenyament () {
         return ensenyament;
     }
 
@@ -51,7 +52,7 @@ public class alumne extends membre {
      * Metode que modifica l'ensenyament de l'alumne
      * @param ensenyament
      */
-    public void setEnsenyament (String ensenyament) {
+    public void setEnsenyament (SiglasTitulacio ensenyament) {
         this.ensenyament = ensenyament;
     }
 
@@ -77,7 +78,7 @@ public class alumne extends membre {
      */
     @Override
     public String toString() {
-        return "Alumne:\n" + super.toString() + ", Ensenyament: " + ensenyament + ", Data matricula: " + dataMatricula;
+        return "Alumne:\n" + super.toString() + ", Ensenyament: " + ensenyament + ", Data matricula: " + dataMatricula + ", Graduat: " + graduat;
     }
 
     /**
@@ -87,5 +88,4 @@ public class alumne extends membre {
     public alumne Copia () {
         return new alumne(this.getAlias(), this.getCorreuElectronic(), this.getAssociacions(), this.ensenyament, this.dataMatricula, this.graduat);
     }
-
 }

@@ -119,6 +119,7 @@ public class associacions {
         return result;
     }
 
+<<<<<<< HEAD
     /**
      * Retorna una associació pel seu índex.
      * @param index L'índex de l'associació.
@@ -130,6 +131,8 @@ public class associacions {
         }
         return associacions[index];
 
+=======
+>>>>>>> f2ef9c6864dcae761c9ddfd6f4bc143d1345e6be
        /**
      * Retorna la xerrada amb la valoració mitjana més alta.
      * En cas d'empat en la valoració mitjana, selecciona la xerrada amb més assistents.
@@ -177,7 +180,11 @@ public class associacions {
         }
     }
 
+<<<<<<< HEAD
     /**
+=======
+        /**
+>>>>>>> f2ef9c6864dcae761c9ddfd6f4bc143d1345e6be
      * Mostra les xerrades que es duen a terme dins d'un rang de dates especificat.
      * @param xerrades, és una llista/taula de xerrades a consultar.
      * @param dataInici, la data d'inici de la franja de dates.

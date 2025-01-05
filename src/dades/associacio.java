@@ -10,6 +10,7 @@ public class associacio {
     private int totalMembres;
     private int totalAccions;
     private membre[] carrecs; // 1-President 2-Secretari 3-Tresorer
+    private membre[] carrecs; // 1-President 2-Secretari 3-Tresorer
 
     // Constructor
     public associacio(String nom, String correu, int maxMembres, int maxAccions) {
@@ -19,6 +20,7 @@ public class associacio {
         this.llistaAccions = new accio[maxAccions];
         this.totalMembres = 0;
         this.totalAccions = 0;
+        this.carrecs = new membre[3];
         this.carrecs = new membre[3];
     }
 
@@ -30,6 +32,19 @@ public class associacio {
     // Mètode per obtenir el correu
     public String getCorreu() {
         return correu;
+    }
+
+    public String toString() {
+        String aux;
+        aux = "La associació "+ this.nom +" té el correu: "+ this.correu +".\nTé un total de "+totalMembres+" i aquests són:";
+        for (int i = 0; i<totalMembres; i++) {
+            aux = aux + "\n"+i+"- "+this.llistaMembres[i].toString();
+        }
+        aux = aux + "\nTé un total de "+totalAccions+" i aquestes són:";
+        for (int i = 0; i<totalMembres; i++) {
+            aux = aux + "\n"+i+"- "+this.llistaAccions[i].toString();
+        }
+        return aux;
     }
 
     public String toString() {
@@ -117,6 +132,46 @@ public class associacio {
         }
         return resultat;
     }
+
+    public void definirPresident(alumne a) {
+        boolean pertany = false;
+        int i = 0;
+        while ( i < totalMembres && !pertany ) {
+            if ( a == llistaMembres[i] ) {
+                pertany = true;
+                carrecs[0] = a;
+            }else{
+                i++;
+            }
+        }
+    }
+
+    public void definirSecretari(alumne a) {
+        boolean pertany = false;
+        int i = 0;
+        while ( i < totalMembres && !pertany ) {
+            if ( a == llistaMembres[i] ) {
+                pertany = true;
+                carrecs[1] = a;
+            }else{
+                i++;
+            }
+        }
+    }
+
+    public void definirTresorer(alumne a) {
+        boolean pertany = false;
+        int i = 0;
+        while ( i < totalMembres && !pertany ) {
+            if ( a == llistaMembres[i] ) {
+                pertany = true;
+                carrecs[2] = a;
+            }else{
+                i++;
+            }
+        }
+    }
+
 
     public void definirPresident(alumne a) {
         boolean pertany = false;

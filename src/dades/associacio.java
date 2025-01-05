@@ -72,7 +72,6 @@ public class associacio {
         return this.llistaMembres;
     }
 
-<<<<<<< HEAD
     public membre getMembre(int index) {
         return this.llistaMembres[index];
     }
@@ -89,8 +88,6 @@ public class associacio {
         return totalAccions;
     }
 
-=======
->>>>>>> 3ca6bc7a903ce68a101fcc7a25c0e26cfa9961cc
     // Llistar membres amb filtre
     public membre[] llistaMembresFiltrat(boolean solsAlumnes, boolean solsProfessors) {
         int contador = 0;
@@ -159,5 +156,4 @@ public class associacio {
             }
         }
     }
-
 }

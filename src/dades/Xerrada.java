@@ -58,7 +58,7 @@ public class Xerrada extends accio {
         if (totalMembres < membres.length) {
             membres[totalMembres++] = membre.copia();
         } else {
-            System.out.println("No es poden afegir més de 3 membres a la xerrada.");
+            throw new maxMembresExcedit("No es poden afegir més de 3 membres a la xerrada.");
         }
     }
 
@@ -67,7 +67,7 @@ public class Xerrada extends accio {
             valoracioMitjana = (valoracioMitjana * assistencies + valoracio) / (assistencies + 1);
             assistencies++;
         } else {
-            System.out.println("La valoració ha d'estar entre 0 i 10.");
+            throw new valoracioNoValida("La valoració ha d'estar entre 0 i 10.");
         }
     }
 

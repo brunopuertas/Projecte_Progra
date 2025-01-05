@@ -2,78 +2,80 @@ package dades;
 import dades.tipusMembre.*;
 import java.util.Date;
 
-public class charla {
-    // Atributos
-    private Date fecha;
+// Classe filla que hereta de accio
+public class Xerrada extends accio {
+    // Atributs addicionals de la classe filla
+    private Date data;
     private final membre[] membres;
-    private int asistencias;
-    private float mediaValoracion;
-    private int totalMiembros;
+    private int assistencies;
+    private float valoracioMitjana;
+    private int totalMembres;
 
-    // Constructor
-    public charla(Date fecha, int maxMiembros, int asistencias, float mediaValoracion) {
-        this.fecha = fecha;
-        this.membres = new membre[maxMiembros];
-        this.asistencias = asistencias;
-        this.mediaValoracion = mediaValoracion;
-        this.totalMiembros = 0;
+    // Constructor de la classe filla
+    public Xerrada(String associacio, String titol, String responsable, Date data, int maxMembres, int assistencies, float valoracioMitjana) {
+        super(associacio, titol, responsable);
+        this.data = data;
+        this.membres = new membre[maxMembres];
+        this.assistencies = assistencies;
+        this.valoracioMitjana = valoracioMitjana;
+        this.totalMembres = 0;
     }
     
-    // Getters y Setters
-    public Date getFecha() {
-        return fecha;
+    // Getters i Setters
+    public Date getData() {
+        return data;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setData(Date data) {
+        this.data = data;
     }
 
     public membre getMembre(int index) {
-            if (index >= 0 && index < membres.length && membres[index] != null) {
-                return membres[index].copia();
-            }
-            return null;
+        if (index >= 0 && index < membres.length && membres[index] != null) {
+            return membres[index].copia();
+        }
+        return null;
     }
 
-    public int getAsistencias() {
-        return asistencias;
+    public int getAssistencies() {
+        return assistencies;
     }
 
-    public void setAsistencias(int asistencias) {
-        this.asistencias = asistencias;
+    public void setAssistencies(int assistencies) {
+        this.assistencies = assistencies;
     }
 
-    public float getMediaValoracion() {
-        return mediaValoracion;
+    public float getValoracioMitjana() {
+        return valoracioMitjana;
     }
 
-    public void setMediaValoracion(float mediaValoracion) {
-        this.mediaValoracion = mediaValoracion;
+    public void setValoracioMitjana(float valoracioMitjana) {
+        this.valoracioMitjana = valoracioMitjana;
     }
 
-    // Métodos de clase
-    public void agregarMiembro(membre membre) {
-        if (totalMiembros < membres.length) {
-            membres[totalMiembros++] = membre.copia();
+    // Mètodes de classe
+    public void afegirMembre(membre membre) {
+        if (totalMembres < membres.length) {
+            membres[totalMembres++] = membre.copia();
         } else {
-            System.out.println("No se pueden agregar más de 3 miembros a la charla.");
+            System.out.println("No es poden afegir més de 3 membres a la xerrada.");
         }
     }
 
-    public void valorarCharla(float valoracion) {
-        if (valoracion >= 0 && valoracion <= 10) {
-            mediaValoracion = (mediaValoracion * asistencias + valoracion) / (asistencias + 1);
-            asistencias++;
+    public void valorarXerrada(float valoracio) {
+        if (valoracio >= 0 && valoracio <= 10) {
+            valoracioMitjana = (valoracioMitjana * assistencies + valoracio) / (assistencies + 1);
+            assistencies++;
         } else {
-            System.out.println("La valoración debe estar entre 0 y 10.");
+            System.out.println("La valoració ha d'estar entre 0 i 10.");
         }
     }
 
-    public boolean esCharlaPopular(int limiteAsistentes) {
-        return asistencias > limiteAsistentes;
+    public boolean esXerradaPopular(int limitAssistents) {
+        return assistencies > limitAssistents;
     }
 
-    public membre obtenerMiembroConMayorParticipacion() {
+    public membre obtenirMembreAmbMesParticipacio() {
         membre max = null;
         for (membre m : membres) {
             if (m != null && (max == null || m.getAssociacions() > max.getAssociacions())) {
@@ -85,6 +87,6 @@ public class charla {
 
     @Override
     public String toString() {
-        return "Charla el " + fecha + ", Asistencias: " + asistencias + ", Valoración Media: " + mediaValoracion;
+        return super.toString() + "\nXerrada el " + data + ", Assistències: " + assistencies + ", Valoració Mitjana: " + valoracioMitjana;
     }
 }

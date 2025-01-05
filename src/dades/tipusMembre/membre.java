@@ -4,6 +4,7 @@ public class membre {
     protected String alias; 
     protected String correuElectronic; 
     protected int associacions;
+    protected boolean actiu=false;
 
        /**
      * Constructor inicialitzat amb parametres d'entrada
@@ -48,6 +49,14 @@ public class membre {
      */
     public void setAlias(String alias) {
         this.alias = alias;
+    }
+
+    /**
+     * Metode per saber si un membre es actiu
+     * @param alias
+     */
+    public boolean isActiu() {
+        return actiu;
     }
 
     /**

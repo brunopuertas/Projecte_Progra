@@ -30,10 +30,15 @@ public class associacio {
         return correu;
     }
 
-    // Afegir membre
     public boolean afegirMembre(membre membre) {
         if (totalMembres < llistaMembres.length) {
-            llistaMembres[totalMembres++] = membre;
+            if (membre.getAssociacions() >= 3) {
+                return false; //LLencem un error si el membre ja està en 3 associacions (Excepcio especial)
+            } else {
+                membre.setAssociacions(membre.getAssociacions() + 1);
+                llistaMembres[totalMembres++] = membre;
+                membre.isActiu();
+            }
             return true;
         }
         return false;
@@ -57,6 +62,7 @@ public class associacio {
                 contador++;
             }
         }
+
         membre[] finalResultat = new membre[contador];
         int index = 0;
         for (int i = 0; i < totalMembres; i++) {

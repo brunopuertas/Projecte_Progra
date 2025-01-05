@@ -118,7 +118,7 @@ public class associacions {
         System.arraycopy(membresActius, 0, result, 0, index);
         return result;
     }
-<<<<<<< HEAD
+
     /**
      * Retorna una associació pel seu índex.
      * @param index L'índex de l'associació.
@@ -130,9 +130,7 @@ public class associacions {
         }
         return associacions[index];
     }
-=======
 
->>>>>>> 3ca6bc7a903ce68a101fcc7a25c0e26cfa9961cc
        /**
      * Retorna la xerrada amb la valoració mitjana més alta.
      * En cas d'empat en la valoració mitjana, selecciona la xerrada amb més assistents.
@@ -167,11 +165,7 @@ public class associacions {
         }
     }
 
-<<<<<<< HEAD
     /**
-=======
-        /**
->>>>>>> 3ca6bc7a903ce68a101fcc7a25c0e26cfa9961cc
      * Mostra les xerrades que tenen més assistents que el límit especificat.
      * @param xerrades, és una llista/taula de xerrades a consultar.
      * @param limit, el nombre mínim d'assistents per filtrar les xerrades.
@@ -184,11 +178,9 @@ public class associacions {
         }
     }
 
-<<<<<<< HEAD
+
+
     /**
-=======
-        /**
->>>>>>> 3ca6bc7a903ce68a101fcc7a25c0e26cfa9961cc
      * Mostra les xerrades que es duen a terme dins d'un rang de dates especificat.
      * @param xerrades, és una llista/taula de xerrades a consultar.
      * @param dataInici, la data d'inici de la franja de dates.
@@ -202,11 +194,8 @@ public class associacions {
         }
     }
 
-<<<<<<< HEAD
+
     /**
-=======
-        /**
->>>>>>> 3ca6bc7a903ce68a101fcc7a25c0e26cfa9961cc
      * Afegeix una nova xerrada a la llista de xerrades.
      * Aquesta funció demana a l'usuari les dades de la nova xerrada i l'afegeix a la llista.
      * @param xerrades, és la llista/taula de xerrades on s'afegirà la nova xerrada.

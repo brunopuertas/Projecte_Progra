@@ -6,16 +6,16 @@ import java.util.Date;
 public class Xerrada extends accio {
     // Atributs addicionals de la classe filla
     private Date data;
-    private final membre[] membres;
     private int assistencies;
     private float valoracioMitjana;
     private int totalMembres;
+    private final membre[] membres;
 
     // Constructor de la classe filla
     public Xerrada(String associacio, String titol, String responsable, Date data, int maxMembres, int assistencies, float valoracioMitjana) {
         super(associacio, titol, responsable);
         this.data = data;
-        this.membres = new membre[maxMembres];
+        this.membres = new membre[maxMembres];  
         this.assistencies = assistencies;
         this.valoracioMitjana = valoracioMitjana;
         this.totalMembres = 0;

@@ -56,7 +56,7 @@ public class membre {
      * @param alias
      */
     public boolean isActiu() {
-        return actiu;
+        return true;
     }
 
     /**

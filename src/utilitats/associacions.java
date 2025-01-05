@@ -118,5 +118,17 @@ public class associacions {
         System.arraycopy(membresActius, 0, result, 0, index);
         return result;
     }
+
+    /**
+     * Retorna una associació pel seu índex.
+     * @param index L'índex de l'associació.
+     * @return L'associació si l'índex és vàlid, o null si no ho és.
+     */
+    public associacio getAssociacio(int index) {
+        if (index < 0 || index >= count) {
+            return null;
+        }
+        return associacions[index];
+    }
 }
 

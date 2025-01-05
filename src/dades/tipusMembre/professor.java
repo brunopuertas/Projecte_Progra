@@ -23,7 +23,7 @@ public class professor extends membre {
      * Metode que retorna el nom del departament del professor
      * @return nomDepartament
      */
-    public String getnomDepartament() {
+    public String getNomDepartament() {
         return nomDepartament;
     }
 

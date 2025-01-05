@@ -11,7 +11,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.StringTokenizer;
-import utilitats.associacions;
+import utilitats.*;
 
 public class gestioFitxers {
 
@@ -175,7 +175,7 @@ private static void escriureFitxer(String nomFitxer, associacions associacions) 
                 escriptor.write("P;" + p.getNomDepartament() + ";" + p.numDespatx() + "\n");
             } else if (m instanceof alumne) {
                 alumne al = (alumne) m;
-                escriptor.write("A;" + al.getEnsenyament() + ";" + al.getDataMatricula() + ";" + al.isGraduat() + "\n");
+                escriptor.write("A;" + al.getEnsenyament() + ";" + al.getDataMatricula() + ";" + al.getGraduat() + "\n");
             }
         }
 
@@ -183,10 +183,10 @@ private static void escriureFitxer(String nomFitxer, associacions associacions) 
 
         for (int k = 0; k < a.getTotalAccions(); k++) {
             accio ac = a.getAccio(k);
-            escriptor.write(ac.getAssociacio() + ";" + ac.getTitol() + ";" + ac.getResponsable() + ";" + ac.getCodiAccio() + ";" + ac.getData() + ";");
+            escriptor.write(ac.getAssociacio() + ";" + ac.getNom() + ";" + ac.getMembreResponsable() + ";" + ac.getCodAccio() + ";");
             if (ac instanceof demostracio) {
                 demostracio d = (demostracio) ac;
-                escriptor.write("D;" + d.isActiva() + ";" + d.getRepeticions() + ";" + d.getCostMaterials() + "\n");
+                escriptor.write(d.getDataDisseny () + "\nD;" + d.isActiva() + ";" + d.getRepeticions() + ";" + d.getCostMaterials() + "\n");
             } else if (ac instanceof Xerrada) {
                 Xerrada x = (Xerrada) ac;
                 escriptor.write("X;" + x.getAssistencies() + ";" + x.getValoracioMitjana() + ";" + x.getTotalMembresXerrada() + "\n");

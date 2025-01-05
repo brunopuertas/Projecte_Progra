@@ -29,6 +29,10 @@ public abstract class accio {
         return cod_Accio;
     }
 
+    public String getMembreResponsable () {
+        return membreResponsable;
+    }
+
     public String setCodiAccio(String codi) {
         return this.cod_Accio = codi;
     }

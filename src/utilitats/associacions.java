@@ -120,6 +120,7 @@ public class associacions {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     /**
      * Retorna una associació pel seu índex.
      * @param index L'índex de l'associació.
@@ -131,6 +132,8 @@ public class associacions {
         }
         return associacions[index];
 
+=======
+>>>>>>> f2ef9c6864dcae761c9ddfd6f4bc143d1345e6be
 =======
 >>>>>>> f2ef9c6864dcae761c9ddfd6f4bc143d1345e6be
        /**
@@ -181,7 +184,11 @@ public class associacions {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     /**
+=======
+        /**
+>>>>>>> f2ef9c6864dcae761c9ddfd6f4bc143d1345e6be
 =======
         /**
 >>>>>>> f2ef9c6864dcae761c9ddfd6f4bc143d1345e6be

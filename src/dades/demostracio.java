@@ -40,6 +40,7 @@ public class demostracio extends accio{
         this.repeticions++;
     }
 
+    @Override
     public String toString() {
         return super.toString() + "\n" + 
                "Data de disseny: " + dataDisseny + "\n" +

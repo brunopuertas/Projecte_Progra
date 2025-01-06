@@ -1,7 +1,5 @@
 package dades.tipusMembre;
 
-import dades.SiglasTitulacio;
-
 public class alumne extends membre {
     private SiglasTitulacio ensenyament; // Usamos el enum SiglasTitulacio
     private int dataMatricula; 

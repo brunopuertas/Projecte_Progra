@@ -7,9 +7,10 @@ public class associacio {
     private final String correu;
     private final membre[] llistaMembres;
     private final accio[] llistaAccions;
+    private membre[] carrecs; // 1-President 2-Secretari 3-Tresorer
     private int totalMembres;
     private int totalAccions;
-    private membre[] carrecs; // 1-President 2-Secretari 3-Tresorer
+    
 
     // Constructor
     public associacio(String nom, String correu, int maxMembres, int maxAccions) {

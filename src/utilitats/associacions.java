@@ -152,7 +152,7 @@ public class associacions {
         return millor;
     }
 
-        /**
+    /**
      * Mostra totes les xerrades que ha fet una persona concreta.
      * @param xerrades, és una llista/taula de xerrades a consultar.
      * @param persona, el nom de la persona que ha fet les xerrades que busquem.
@@ -178,8 +178,6 @@ public class associacions {
         }
     }
 
-
-
     /**
      * Mostra les xerrades que es duen a terme dins d'un rang de dates especificat.
      * @param xerrades, és una llista/taula de xerrades a consultar.
@@ -193,7 +191,6 @@ public class associacions {
             }
         }
     }
-
 
     /**
      * Afegeix una nova xerrada a la llista de xerrades.

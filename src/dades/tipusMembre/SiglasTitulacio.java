@@ -1,4 +1,4 @@
-package dades;
+package dades.tipusMembre;
 
 public enum SiglasTitulacio {
     EB,   // Enginyeria Biomèdica

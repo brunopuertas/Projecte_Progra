@@ -41,6 +41,10 @@ public class Xerrada extends accio {
         return assistencies;
     }
 
+    public int getTotalMembres() {
+        return totalMembres;
+    }
+
     public void setAssistencies(int assistencies) {
         this.assistencies = assistencies;
     }
@@ -57,18 +61,20 @@ public class Xerrada extends accio {
     public void afegirMembre(membre membre) {
         if (totalMembres < membres.length) {
             membres[totalMembres++] = membre.copia();
-        } else {
-            throw new maxMembresExcedit("No es poden afegir més de 3 membres a la xerrada.");
         }
+        // } else {
+        //     throw new maxMembresExcedit("No es poden afegir més de 3 membres a la xerrada.");
+        // }
     }
 
     public void valorarXerrada(float valoracio) {
         if (valoracio >= 0 && valoracio <= 10) {
             valoracioMitjana = (valoracioMitjana * assistencies + valoracio) / (assistencies + 1);
             assistencies++;
-        } else {
-            throw new valoracioNoValida("La valoració ha d'estar entre 0 i 10.");
         }
+        // } else {
+        //     throw new valoracioNoValida("La valoració ha d'estar entre 0 i 10.");
+        // }
     }
 
     public boolean esXerradaPopular(int limitAssistents) {

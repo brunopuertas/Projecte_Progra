@@ -30,7 +30,7 @@ public class gestioFitxers {
         // Variables professor
         String nomDepartament;int numDespatx;
         // Variables alumne
-        String ensenyament;int dataMatricula;boolean graduat;
+        SiglasTitulacio ensenyament;int dataMatricula;boolean graduat;
 
         accio[] llistaAccions = new accio[100];
         int totalAccions = 0;
@@ -77,7 +77,7 @@ public class gestioFitxers {
                         numDespatx = Integer.parseInt(tokens.nextToken());
                         llistaMembres[totalMembres++] = new professor(alias, correuElectronic, associacions, nomDepartament, numDespatx);
                     } else if (tokens.nextToken().equals("A")) {
-                        ensenyament = tokens.nextToken();
+                        ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
                         dataMatricula = Integer.parseInt(tokens.nextToken());
                         graduat = Boolean.parseBoolean(tokens.nextToken());
                         llistaMembres[totalMembres++] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
@@ -93,7 +93,7 @@ public class gestioFitxers {
             }
 
             if (processantAccions && !linea.isBlank()) {
-                // Procesar els membres
+                // Procesar les accions
                 while (tokens.hasMoreTokens()) {
                     associacio = tokens.nextToken();
                     titol = tokens.nextToken();
@@ -125,7 +125,7 @@ public class gestioFitxers {
                         alias = tokens.nextToken();
                         correuElectronic = tokens.nextToken();
                         associacions = Integer.parseInt(tokens.nextToken());
-                        ensenyament = tokens.nextToken();
+                        ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
                         dataMatricula = Integer.parseInt(tokens.nextToken());
                         graduat = Boolean.parseBoolean(tokens.nextToken());
                         membresXerrada[QmembresXerrada++] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
@@ -160,51 +160,51 @@ public class gestioFitxers {
         lector.close();
         return aux;
     }
-private static void escriureFitxer(String nomFitxer, associacions associacions) throws IOException {
-    BufferedWriter escriptor = new BufferedWriter(new FileWriter(nomFitxer));
+    private static void escriureFitxer(String nomFitxer, associacions associacions) throws IOException {
+        BufferedWriter escriptor = new BufferedWriter(new FileWriter(nomFitxer));
 
-    for (int i = 0; i < associacions.getCount(); i++) {
-        associacio a = associacions.getAssociacio(i);
-        escriptor.write(a.getNom() + ";" + a.getCorreu() + "\n");
+        for (int i = 0; i < associacions.getCount(); i++) {
+            associacio a = associacions.getAssociacio(i);
+            escriptor.write(a.getNom() + ";" + a.getCorreu() + "\n");
 
-        for (int j = 0; j < a.getTotalMembres(); j++) {
-            membre m = a.getMembre(j);
-            escriptor.write(m.getAlias() + ";" + m.getCorreuElectronic() + ";" + m.getAssociacions() + ";");
-            if (m instanceof professor) {
-                professor p = (professor) m;
-                escriptor.write("P;" + p.getNomDepartament() + ";" + p.numDespatx() + "\n");
-            } else if (m instanceof alumne) {
-                alumne al = (alumne) m;
-                escriptor.write("A;" + al.getEnsenyament() + ";" + al.getDataMatricula() + ";" + al.getGraduat() + "\n");
-            }
-        }
-
-        escriptor.write("---\n");
-
-        for (int k = 0; k < a.getTotalAccions(); k++) {
-            accio ac = a.getAccio(k);
-            escriptor.write(ac.getAssociacio() + ";" + ac.getNom() + ";" + ac.getMembreResponsable() + ";" + ac.getCodAccio() + ";");
-            if (ac instanceof demostracio) {
-                demostracio d = (demostracio) ac;
-                escriptor.write(d.getDataDisseny () + "\nD;" + d.isActiva() + ";" + d.getRepeticions() + ";" + d.getCostMaterials() + "\n");
-            } else if (ac instanceof Xerrada) {
-                Xerrada x = (Xerrada) ac;
-                escriptor.write("X;" + x.getAssistencies() + ";" + x.getValoracioMitjana() + ";" + x.getTotalMembresXerrada() + "\n");
-                for (int l = 0; l < x.getTotalMembresXerrada(); l++) {
-                    membre mx = x.getMembre(l);
-                    escriptor.write(mx.getAlias() + ";" + mx.getCorreuElectronic() + ";" + mx.getAssociacions() + ";");
-                    if (mx instanceof professor) {
-                        professor px = (professor) mx;
-                        escriptor.write("P;" + px.getNomDepartament() + ";" + px.getNumDespatx() + "\n");
-                    } else if (mx instanceof alumne) {
-                        alumne alx = (alumne) mx;
-                        escriptor.write("A;" + alx.getEnsenyament() + ";" + alx.getDataMatricula() + ";" + alx.isGraduat() + "\n");
-                    }
+            for (int j = 0; j < a.getTotalMembres(); j++) {
+                membre m = a.getMembre(j);
+                escriptor.write(m.getAlias() + ";" + m.getCorreuElectronic() + ";" + m.getAssociacions() + ";");
+                if (m instanceof professor) {
+                    professor p = (professor) m;
+                    escriptor.write("P;" + p.getNomDepartament() + ";" + p.numDespatx() + "\n");
+                } else if (m instanceof alumne) {
+                    alumne al = (alumne) m;
+                    escriptor.write("A;" + al.getEnsenyament() + ";" + al.getDataMatricula() + ";" + al.getGraduat() + "\n");
                 }
             }
+
+            escriptor.write("---\n");
+
+            for (int k = 0; k < a.getTotalAccions(); k++) {
+                accio ac = a.getAccio(k);
+                escriptor.write(ac.getAssociacio() + ";" + ac.getNom() + ";" + ac.getMembreResponsable() + ";" + ac.getCodAccio() + ";");
+                if (ac instanceof demostracio) {
+                    demostracio d = (demostracio) ac;
+                    escriptor.write(d.getDataDisseny () + "D;" + d.esActiva() + ";" + d.getRepeticions() + ";" + d.getCostMaterials() + "\n");
+                } else if (ac instanceof Xerrada) {
+                    Xerrada x = (Xerrada) ac;
+                    escriptor.write(x.getData () + "X;" + x.getAssistencies() + ";" + x.getValoracioMitjana() + ";" + x.getTotalMembres() + "\n");
+                    for (int l = 0; l < x.getTotalMembres(); l++) {
+                        membre mx = x.getMembre(l);
+                        if (mx instanceof professor) {
+                            professor px = (professor) mx;
+                            escriptor.write("P;"+ mx.getAlias() + ";" + mx.getCorreuElectronic() + ";" + mx.getAssociacions() + ";" + px.getNomDepartament() + ";" + px.numDespatx() + "\n");
+                        } else if (mx instanceof alumne) {
+                            alumne alx = (alumne) mx;
+                            escriptor.write("A;" + mx.getAlias() + ";" + mx.getCorreuElectronic() + ";" + mx.getAssociacions() + ";" + alx.getEnsenyament() + ";" + alx.getDataMatricula() + ";" + alx.getGraduat() + "\n");
+                        }
+                    }
+                    escriptor.write("XerradaAmbMembres");
+                }
+            }
+            escriptor.write("\n");
         }
-        escriptor.write("\n");
+        escriptor.close();
     }
-    escriptor.close();
-}
 }

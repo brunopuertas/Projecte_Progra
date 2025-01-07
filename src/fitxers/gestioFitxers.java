@@ -50,7 +50,6 @@ public class gestioFitxers {
 
         while ((linea = lector.readLine()) != null) {
             numLinia++;
-            linea = lector.readLine();
             StringTokenizer tokens = new StringTokenizer(linea, ";");
 
             if (numLinia == 1) {
@@ -69,40 +68,41 @@ public class gestioFitxers {
             if (processantMembres && !linea.isBlank()) {
                 // Procesar els membres
                 while (tokens.hasMoreTokens()) {
-                switch (tokens.nextToken()) {
-                    case "Professor" -> {
-                        alias = tokens.nextToken(); correuElectronic = tokens.nextToken(); associacions = Integer.parseInt(tokens.nextToken());
-                        nomDepartament = tokens.nextToken();
-                        numDespatx = Integer.parseInt(tokens.nextToken());
-                        llistaMembres[totalMembres++] = new professor(alias, correuElectronic, associacions, nomDepartament, numDespatx);
-                    }
-                    case "Alumne" -> {
-                        alias = tokens.nextToken(); correuElectronic = tokens.nextToken(); associacions = Integer.parseInt(tokens.nextToken());
-                        ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
-                        dataMatricula = Integer.parseInt(tokens.nextToken());
-                        graduat = Boolean.parseBoolean(tokens.nextToken());
-                        llistaMembres[totalMembres++] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
-                    }
-                    case "President" -> {
-                        alias = tokens.nextToken(); correuElectronic = tokens.nextToken(); associacions = Integer.parseInt(tokens.nextToken());
-                        ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
-                        dataMatricula = Integer.parseInt(tokens.nextToken());
-                        graduat = Boolean.parseBoolean(tokens.nextToken());
-                        carrec[0] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
-                    }
-                    case "Secretari" -> {
-                        alias = tokens.nextToken(); correuElectronic = tokens.nextToken(); associacions = Integer.parseInt(tokens.nextToken());
-                        ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
-                        dataMatricula = Integer.parseInt(tokens.nextToken());
-                        graduat = Boolean.parseBoolean(tokens.nextToken());
-                        carrec[1] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
-                    }
-                    case "Tresorer" -> {
-                        alias = tokens.nextToken(); correuElectronic = tokens.nextToken(); associacions = Integer.parseInt(tokens.nextToken());
-                        ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
-                        dataMatricula = Integer.parseInt(tokens.nextToken());
-                        graduat = Boolean.parseBoolean(tokens.nextToken());
-                        carrec[2] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
+                    switch (tokens.nextToken()) {
+                        case "Professor":
+                            alias = tokens.nextToken(); correuElectronic = tokens.nextToken(); associacions = Integer.parseInt(tokens.nextToken());
+                            nomDepartament = tokens.nextToken();
+                            numDespatx = Integer.parseInt(tokens.nextToken());
+                            llistaMembres[totalMembres++] = new professor(alias, correuElectronic, associacions, nomDepartament, numDespatx);
+                            break;
+                        case "Alumne":
+                            alias = tokens.nextToken(); correuElectronic = tokens.nextToken(); associacions = Integer.parseInt(tokens.nextToken());
+                            ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
+                            dataMatricula = Integer.parseInt(tokens.nextToken());
+                            graduat = Boolean.parseBoolean(tokens.nextToken());
+                            llistaMembres[totalMembres++] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
+                            break;
+                        case "President":
+                            alias = tokens.nextToken(); correuElectronic = tokens.nextToken(); associacions = Integer.parseInt(tokens.nextToken());
+                            ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
+                            dataMatricula = Integer.parseInt(tokens.nextToken());
+                            graduat = Boolean.parseBoolean(tokens.nextToken());
+                            carrec[0] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
+                            break;
+                        case "Secretari":
+                            alias = tokens.nextToken(); correuElectronic = tokens.nextToken(); associacions = Integer.parseInt(tokens.nextToken());
+                            ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
+                            dataMatricula = Integer.parseInt(tokens.nextToken());
+                            graduat = Boolean.parseBoolean(tokens.nextToken());
+                            carrec[1] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
+                            break;
+                        case "Tresorer":
+                            alias = tokens.nextToken(); correuElectronic = tokens.nextToken(); associacions = Integer.parseInt(tokens.nextToken());
+                            ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
+                            dataMatricula = Integer.parseInt(tokens.nextToken());
+                            graduat = Boolean.parseBoolean(tokens.nextToken());
+                            carrec[2] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
+                            break;
                     }
                 }
             }
@@ -111,41 +111,41 @@ public class gestioFitxers {
                 // Cambiar de secció al trobar el delimitador ---
                 processantMembres = false;
                 processantAccions = true;
-                continue;
             }
 
             if (processantAccions && !linea.isBlank()) {
                 // Procesar les accions
                 while (tokens.hasMoreTokens()) {
-                    switch (tokens.nextToken()) {
-                        case "Associacio" -> {
+                    String token = tokens.nextToken();
+                    switch (token) {
+                        case "Associacio":
                             associacio = tokens.nextToken();
                             titol = tokens.nextToken();
                             responsable = tokens.nextToken();
                             codi_Accio = tokens.nextToken();
-                        }
-                        case "Xerrada" -> {
+                            break;
+                        case "Xerrada":
                             data = Date.valueOf(tokens.nextToken());
                             assistencies = Integer.parseInt(tokens.nextToken());
                             valoracioMitjana = Float.parseFloat(tokens.nextToken());
                             totalMembresXerrada = Integer.parseInt(tokens.nextToken());
-                        }
-                        case "Demostracio" -> {
+                            break;
+                        case "Demostracio":
                             data = Date.valueOf(tokens.nextToken());
                             activa = Boolean.parseBoolean(tokens.nextToken());
                             repeticions = Integer.parseInt(tokens.nextToken());
                             costMaterials = Float.parseFloat(tokens.nextToken());
                             llistaAccions[totalAccions++] = new demostracio(associacio, titol, responsable, data, activa, costMaterials);
-                        }
-                        case "Professor" -> {
+                            break;
+                        case "Professor":
                             alias = tokens.nextToken();
                             correuElectronic = tokens.nextToken();
                             associacions = Integer.parseInt(tokens.nextToken());
                             nomDepartament = tokens.nextToken();
                             numDespatx = Integer.parseInt(tokens.nextToken());
                             membresXerrada[QmembresXerrada++] = new professor(alias, correuElectronic, associacions, nomDepartament, numDespatx);
-                        }
-                        case "Alumne" -> {
+                            break;
+                        case "Alumne":
                             alias = tokens.nextToken();
                             correuElectronic = tokens.nextToken();
                             associacions = Integer.parseInt(tokens.nextToken());
@@ -153,15 +153,15 @@ public class gestioFitxers {
                             dataMatricula = Integer.parseInt(tokens.nextToken());
                             graduat = Boolean.parseBoolean(tokens.nextToken());
                             membresXerrada[QmembresXerrada++] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
-                        }
-                        case "XerradaAmbMembres" -> {
+                            break;
+                        case "XerradaAmbMembres":
                             Xerrada xerrada = new Xerrada(associacio, titol, responsable, data, totalMembresXerrada, assistencies, valoracioMitjana);
                             membresXerrada = new membre[totalMembresXerrada];
                             for (int i = 0; i < totalMembresXerrada; i++) {
                                 xerrada.afegirMembre(membresXerrada[i]);
                             }
                             llistaAccions[totalAccions++] = xerrada;
-                        }
+                            break;
                     }
                 }
             }
@@ -177,7 +177,6 @@ public class gestioFitxers {
                 }
                 aux.afegirAssociacio(a);
                 numLinia = 0;
-                continue;
             }
         }
         lector.close();
@@ -214,14 +213,5 @@ public class gestioFitxers {
             e.printStackTrace();
         } 
         escriptor.close();
-    }
-
-    public static void main(String[] args) throws Exception {
-        try {
-            associacions a = llegirFitxer("associacions.txt");
-            escriureFitxer("associacions2.txt", a);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

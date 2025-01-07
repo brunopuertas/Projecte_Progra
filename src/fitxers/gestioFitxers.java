@@ -4,6 +4,7 @@ import dades.*;
 import dades.tipusMembre.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,6 +14,11 @@ import utilitats.*;
 
 public class gestioFitxers {
 
+    /**
+     * Mètode per llegir un fitxer
+     * @param nomFitxer
+     * @throws IOException
+     */
     private static associacions llegirFitxer(String nomFitxer) throws IOException {
         associacions aux = new associacions(100);
 
@@ -183,6 +189,12 @@ public class gestioFitxers {
         return aux;
     }
 
+    /**
+     * Mètode per poder escriure un fitxer
+     * @param nomFitxer
+     * @param Associacions
+     * @throws IOException
+     */
     private static void escriureFitxer(String nomFitxer, associacions Associacions) throws IOException {
         BufferedWriter escriptor = new BufferedWriter(new FileWriter(nomFitxer));
         try {
@@ -234,6 +246,45 @@ public class gestioFitxers {
             }
         } catch (IOException e) {
             escriptor.close();
+        }
+        escriptor.close();
+    }
+
+    /**
+     * Mètode per llegir un fitxer
+     * @param nomFitxer
+     */
+    public static void crearFitxer (String nomFitxers){
+        File fitxer = new File(nomFitxers);
+
+        try {
+            if (fitxer.createNewFile()) {
+                System.out.println("Fitxer creat: " + fitxer.getName());
+            } else {
+                System.out.println("El fitxer ja existeix.");
+            }
+        } catch (IOException e) {
+            System.out.println("S'ha produït un error.");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Mètode per esborrar un fitxer
+     * @param nomFitxers
+     */
+    public static void borrarFitxer (String nomFitxers){
+        File fitxer = new File(nomFitxers);
+
+        try {
+            if (fitxer.delete()) {
+                System.out.println("Fitxer esborrat: " + fitxer.getName());
+            } else {
+                System.out.println("No s'ha pogut esborrar el fitxer.");
+            }
+        } catch (Exception e) {
+            System.out.println("S'ha produït un error.");
+            e.printStackTrace();
         }
     }
 }

@@ -157,4 +157,16 @@ public class associacio {
             }
         }
     }
+
+    public membre getPresident() {
+        return carrecs[0];
+    }
+
+    public membre getSecretari() {
+        return carrecs[1];
+    }
+
+    public membre getTresorer() {
+        return carrecs[2];
+    }
 }

@@ -8,8 +8,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.StringTokenizer;
 import utilitats.*;
 
@@ -32,11 +30,14 @@ public class gestioFitxers {
         // Variables alumne
         SiglasTitulacio ensenyament;int dataMatricula;boolean graduat;
 
+        // Variables carrec
+        membre[] carrec = new membre[3];
+
         accio[] llistaAccions = new accio[100];
         int totalAccions = 0;
         // Variables accio
-        String associacio;String titol;String responsable;String codi_Accio;
-        Date data;
+        String associacio = "";String titol = "" ;String responsable = "" ;String codi_Accio = "";
+        Date data = null;
         // Variables demostracio
         boolean activa; int repeticions=0;float costMaterials;
         // Variables Xerrada
@@ -68,19 +69,40 @@ public class gestioFitxers {
             if (processantMembres && !linea.isBlank()) {
                 // Procesar els membres
                 while (tokens.hasMoreTokens()) {
-                    alias = tokens.nextToken();
-                    correuElectronic = tokens.nextToken();
-                    associacions = Integer.parseInt(tokens.nextToken());
-
-                    if (tokens.nextToken().equals("P")) {
+                switch (tokens.nextToken()) {
+                    case "Professor" -> {
+                        alias = tokens.nextToken(); correuElectronic = tokens.nextToken(); associacions = Integer.parseInt(tokens.nextToken());
                         nomDepartament = tokens.nextToken();
                         numDespatx = Integer.parseInt(tokens.nextToken());
                         llistaMembres[totalMembres++] = new professor(alias, correuElectronic, associacions, nomDepartament, numDespatx);
-                    } else if (tokens.nextToken().equals("A")) {
+                    }
+                    case "Alumne" -> {
+                        alias = tokens.nextToken(); correuElectronic = tokens.nextToken(); associacions = Integer.parseInt(tokens.nextToken());
                         ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
                         dataMatricula = Integer.parseInt(tokens.nextToken());
                         graduat = Boolean.parseBoolean(tokens.nextToken());
                         llistaMembres[totalMembres++] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
+                    }
+                    case "President" -> {
+                        alias = tokens.nextToken(); correuElectronic = tokens.nextToken(); associacions = Integer.parseInt(tokens.nextToken());
+                        ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
+                        dataMatricula = Integer.parseInt(tokens.nextToken());
+                        graduat = Boolean.parseBoolean(tokens.nextToken());
+                        carrec[0] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
+                    }
+                    case "Secretari" -> {
+                        alias = tokens.nextToken(); correuElectronic = tokens.nextToken(); associacions = Integer.parseInt(tokens.nextToken());
+                        ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
+                        dataMatricula = Integer.parseInt(tokens.nextToken());
+                        graduat = Boolean.parseBoolean(tokens.nextToken());
+                        carrec[1] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
+                    }
+                    case "Tresorer" -> {
+                        alias = tokens.nextToken(); correuElectronic = tokens.nextToken(); associacions = Integer.parseInt(tokens.nextToken());
+                        ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
+                        dataMatricula = Integer.parseInt(tokens.nextToken());
+                        graduat = Boolean.parseBoolean(tokens.nextToken());
+                        carrec[2] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
                     }
                 }
             }
@@ -95,49 +117,51 @@ public class gestioFitxers {
             if (processantAccions && !linea.isBlank()) {
                 // Procesar les accions
                 while (tokens.hasMoreTokens()) {
-                    associacio = tokens.nextToken();
-                    titol = tokens.nextToken();
-                    responsable = tokens.nextToken();
-                    codi_Accio = tokens.nextToken();
-
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                    LocalDate fecha = LocalDate.parse(tokens.nextToken(), formatter);
-                    data = Date.valueOf(fecha);
-
-                    // Xerrada
-                    if (tokens.nextToken().equals("X")) {
-                        assistencies = Integer.parseInt(tokens.nextToken());
-                        valoracioMitjana = Float.parseFloat(tokens.nextToken());
-                        totalMembresXerrada = Integer.parseInt(tokens.nextToken());
-                    } else if (tokens.nextToken().equals("D")) {
-                        activa = Boolean.parseBoolean(tokens.nextToken());
-                        repeticions = Integer.parseInt(tokens.nextToken());
-                        costMaterials = Float.parseFloat(tokens.nextToken());
-                        llistaAccions[totalAccions++] = new demostracio(associacio, titol, responsable, data, activa, costMaterials);
-                    } else if (tokens.nextToken().equals("P")) {
-                        alias = tokens.nextToken();
-                        correuElectronic = tokens.nextToken();
-                        associacions = Integer.parseInt(tokens.nextToken());
-                        nomDepartament = tokens.nextToken();
-                        numDespatx = Integer.parseInt(tokens.nextToken());
-                        membresXerrada[QmembresXerrada++] = new professor(alias, correuElectronic, associacions, nomDepartament, numDespatx);
-                    } else if (tokens.nextToken().equals("A")) {
-                        alias = tokens.nextToken();
-                        correuElectronic = tokens.nextToken();
-                        associacions = Integer.parseInt(tokens.nextToken());
-                        ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
-                        dataMatricula = Integer.parseInt(tokens.nextToken());
-                        graduat = Boolean.parseBoolean(tokens.nextToken());
-                        membresXerrada[QmembresXerrada++] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
-                    }
-
-                    if (tokens.nextToken().equals("XerradaConMembres")) {
-                        membresXerrada = new membre[totalMembresXerrada];
-                        Xerrada xerrada = new Xerrada(associacio, titol, responsable, data, totalMembresXerrada, assistencies, valoracioMitjana);
-                        for (int i = 0; i < totalMembresXerrada; i++) {
-                            xerrada.afegirMembre(membresXerrada[i]);
+                    switch (tokens.nextToken()) {
+                        case "Associacio" -> {
+                            associacio = tokens.nextToken();
+                            titol = tokens.nextToken();
+                            responsable = tokens.nextToken();
+                            codi_Accio = tokens.nextToken();
                         }
-                        llistaAccions[totalAccions++] = xerrada;
+                        case "Xerrada" -> {
+                            data = Date.valueOf(tokens.nextToken());
+                            assistencies = Integer.parseInt(tokens.nextToken());
+                            valoracioMitjana = Float.parseFloat(tokens.nextToken());
+                            totalMembresXerrada = Integer.parseInt(tokens.nextToken());
+                        }
+                        case "Demostracio" -> {
+                            data = Date.valueOf(tokens.nextToken());
+                            activa = Boolean.parseBoolean(tokens.nextToken());
+                            repeticions = Integer.parseInt(tokens.nextToken());
+                            costMaterials = Float.parseFloat(tokens.nextToken());
+                            llistaAccions[totalAccions++] = new demostracio(associacio, titol, responsable, data, activa, costMaterials);
+                        }
+                        case "Professor" -> {
+                            alias = tokens.nextToken();
+                            correuElectronic = tokens.nextToken();
+                            associacions = Integer.parseInt(tokens.nextToken());
+                            nomDepartament = tokens.nextToken();
+                            numDespatx = Integer.parseInt(tokens.nextToken());
+                            membresXerrada[QmembresXerrada++] = new professor(alias, correuElectronic, associacions, nomDepartament, numDespatx);
+                        }
+                        case "Alumne" -> {
+                            alias = tokens.nextToken();
+                            correuElectronic = tokens.nextToken();
+                            associacions = Integer.parseInt(tokens.nextToken());
+                            ensenyament = SiglasTitulacio.valueOf(tokens.nextToken());
+                            dataMatricula = Integer.parseInt(tokens.nextToken());
+                            graduat = Boolean.parseBoolean(tokens.nextToken());
+                            membresXerrada[QmembresXerrada++] = new alumne(alias, correuElectronic, associacions, ensenyament, dataMatricula, graduat);
+                        }
+                        case "XerradaAmbMembres" -> {
+                            Xerrada xerrada = new Xerrada(associacio, titol, responsable, data, totalMembresXerrada, assistencies, valoracioMitjana);
+                            membresXerrada = new membre[totalMembresXerrada];
+                            for (int i = 0; i < totalMembresXerrada; i++) {
+                                xerrada.afegirMembre(membresXerrada[i]);
+                            }
+                            llistaAccions[totalAccions++] = xerrada;
+                        }
                     }
                 }
             }
@@ -147,11 +171,10 @@ public class gestioFitxers {
                 for (int i = 0; i < totalMembres; i++) {
                     a.afegirMembre(llistaMembres[i]);
                 }
-
+                a.definirPresident((alumne) carrec[0]); a.definirSecretari((alumne) carrec[1]); a.definirTresorer((alumne) carrec[2]);
                 for (int i = 0; i < totalAccions; i++) {
                     a.afegirAccio(llistaAccions[i]);
                 }
-
                 aux.afegirAssociacio(a);
                 numLinia = 0;
                 continue;
@@ -160,51 +183,45 @@ public class gestioFitxers {
         lector.close();
         return aux;
     }
-    private static void escriureFitxer(String nomFitxer, associacions associacions) throws IOException {
+
+        private static void escriureFitxer(String nomFitxer, associacions Associacions) throws IOException {
         BufferedWriter escriptor = new BufferedWriter(new FileWriter(nomFitxer));
-
-        for (int i = 0; i < associacions.getCount(); i++) {
-            associacio a = associacions.getAssociacio(i);
+        try {
+            for (int i = 0; i < Associacions.getCount(); i++) {
+            associacio a = Associacions.getAssociacio(i);
             escriptor.write(a.getNom() + ";" + a.getCorreu() + "\n");
-
+            membre presi  = a.getPresident();
+            escriptor.write("President;" + presi.getAlias() + ";" + presi.getCorreuElectronic() + ";" + presi.getAssociacions() + ";" + ((alumne) presi).getEnsenyament() + ";" + ((alumne) presi).getDataMatricula() + ";" + ((alumne) presi).getGraduat() + "\n");
+            membre secre  = a.getSecretari();
+            escriptor.write("Secretari;" + secre.getAlias() + ";" + secre.getCorreuElectronic() + ";" + secre.getAssociacions() + ";" + ((alumne) secre).getEnsenyament() + ";" + ((alumne) secre).getDataMatricula() + ";" + ((alumne) secre).getGraduat() + "\n");
+            membre treso  = a.getTresorer();
+            escriptor.write("Tresorer;" + treso.getAlias() + ";" + treso.getCorreuElectronic() + ";" + treso.getAssociacions() + ";" + ((alumne) treso).getEnsenyament() + ";" + ((alumne) treso).getDataMatricula() + ";" + ((alumne) treso).getGraduat() + "\n"); 
             for (int j = 0; j < a.getTotalMembres(); j++) {
                 membre m = a.getMembre(j);
-                escriptor.write(m.getAlias() + ";" + m.getCorreuElectronic() + ";" + m.getAssociacions() + ";");
-                if (m instanceof professor) {
-                    professor p = (professor) m;
-                    escriptor.write("P;" + p.getNomDepartament() + ";" + p.numDespatx() + "\n");
-                } else if (m instanceof alumne) {
-                    alumne al = (alumne) m;
-                    escriptor.write("A;" + al.getEnsenyament() + ";" + al.getDataMatricula() + ";" + al.getGraduat() + "\n");
+                if (m instanceof professor p) {
+                escriptor.write("Professor;" + p.getAlias() + ";" + p.getCorreuElectronic() + ";" + p.getAssociacions() + ";" + p.getNomDepartament() + ";" + p.numDespatx() + "\n");
+                } else if (m instanceof alumne al) {
+                escriptor.write("Alumne;" + al.getAlias() + ";" + al.getCorreuElectronic() + ";" + al.getAssociacions() + ";" + al.getEnsenyament() + ";" + al.getDataMatricula() + ";" + al.getGraduat() + "\n");
                 }
             }
-
             escriptor.write("---\n");
-
             for (int k = 0; k < a.getTotalAccions(); k++) {
                 accio ac = a.getAccio(k);
-                escriptor.write(ac.getAssociacio() + ";" + ac.getNom() + ";" + ac.getMembreResponsable() + ";" + ac.getCodAccio() + ";");
-                if (ac instanceof demostracio) {
-                    demostracio d = (demostracio) ac;
-                    escriptor.write(d.getDataDisseny () + "D;" + d.esActiva() + ";" + d.getRepeticions() + ";" + d.getCostMaterials() + "\n");
-                } else if (ac instanceof Xerrada) {
-                    Xerrada x = (Xerrada) ac;
-                    escriptor.write(x.getData () + "X;" + x.getAssistencies() + ";" + x.getValoracioMitjana() + ";" + x.getTotalMembres() + "\n");
-                    for (int l = 0; l < x.getTotalMembres(); l++) {
-                        membre mx = x.getMembre(l);
-                        if (mx instanceof professor) {
-                            professor px = (professor) mx;
-                            escriptor.write("P;"+ mx.getAlias() + ";" + mx.getCorreuElectronic() + ";" + mx.getAssociacions() + ";" + px.getNomDepartament() + ";" + px.numDespatx() + "\n");
-                        } else if (mx instanceof alumne) {
-                            alumne alx = (alumne) mx;
-                            escriptor.write("A;" + mx.getAlias() + ";" + mx.getCorreuElectronic() + ";" + mx.getAssociacions() + ";" + alx.getEnsenyament() + ";" + alx.getDataMatricula() + ";" + alx.getGraduat() + "\n");
-                        }
-                    }
-                    escriptor.write("XerradaAmbMembres");
-                }
+                escriptor.write("Associacio;" + ac.getAssociacio() + ";" + ac.getNom() + ";" + ac.getMembreResponsable() + ";" + ac.getCodAccio() + ";\n");
             }
-            escriptor.write("\n");
-        }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
         escriptor.close();
+    }
+
+    public static void main(String[] args) throws Exception {
+        try {
+            associacions a = llegirFitxer("associacions.txt");
+            escriureFitxer("associacions2.txt", a);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

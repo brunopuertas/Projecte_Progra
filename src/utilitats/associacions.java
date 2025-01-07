@@ -26,11 +26,11 @@ public class associacions {
         if (buscarAssociacio(associacio.getNom()) != null) {
             throw new IllegalArgumentException("Ja existeix una associació amb el nom '" + associacio.getNom() + "'");
         }
-
+ 
         if (count == associacions.length) {
             throw new IllegalStateException("No hi ha espai per afegir més associacions");
         }
-
+ 
         associacions[count++] = associacio;
     }
 

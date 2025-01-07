@@ -3,6 +3,10 @@ package utilitats;
 import dades.*;
 import dades.tipusMembre.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
 public class associacions {
 
     private associacio[] associacions; 
@@ -159,7 +163,7 @@ public class associacions {
      */
     public static void mostrarXerradesPerPersona(Xerrada[] xerrades, String persona) {
         for (Xerrada x : xerrades) {
-            if (x.getResponsable().equalsIgnoreCase(persona)) {
+            if (x.getMembreResponsable().equalsIgnoreCase(persona)) {
                 System.out.println(x);
             }
         }
@@ -243,12 +247,13 @@ public class associacions {
      * i recalculant la valoració mitjana segons la nova valoració donada.
      * @param valoracio, la valoració que l'assistent vol donar (ha de ser entre 0 i 10).
      */
-    public void valorarXerradaPerAssistent(float valoracio) {
+    public void valorarXerradaPerAssistent(float valoracio, Xerrada x) {
         // Comprovem que la valoració està dins del rang vàlid (0-10)
         if (valoracio >= 0 && valoracio <= 10) {
             // Recalculem la nova valoració mitjana
-            valoracioMitjana = (valoracioMitjana * assistencies + valoracio) / (assistencies + 1);
-            assistencies++;  // Augmentem el nombre d'assistències
+            float novaValoracio = ( x.getValoracioMitjana() * x.getAssistencies() + valoracio ) / ( x.getAssistencies() + 1);
+            x.setValoracioMitjana(novaValoracio);
+            x.setAssistencies(x.getAssistencies() + 1);;  // Augmentem el nombre d'assistències
     
             System.out.println("Valoració afegida correctament!");
         } else {

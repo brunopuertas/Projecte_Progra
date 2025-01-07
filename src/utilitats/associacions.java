@@ -30,11 +30,11 @@ public class associacions {
         if (buscarAssociacio(associacio.getNom()) != null) {
             throw new IllegalArgumentException("Ja existeix una associació amb el nom '" + associacio.getNom() + "'");
         }
- 
+
         if (count == associacions.length) {
             throw new IllegalStateException("No hi ha espai per afegir més associacions");
         }
- 
+
         associacions[count++] = associacio;
     }
 
@@ -188,13 +188,36 @@ public class associacions {
      * @param dataInici, la data d'inici de la franja de dates.
      * @param dataFi, la data final de la franja de dates.
      */
-    public static void mostrarXerradesEnRangDeDates(Xerrada[] xerrades, Date dataInici, Date dataFi) {
-        for (Xerrada x : xerrades) {
-            if (x.getData().after(dataInici) && x.getData().before(dataFi)) {
-                System.out.println(x);
+    public accio[] mostrarXerradesEnRangDeDates(Date dataInici, Date dataFi) {
+        int comptador = 0;
+        int nTotalAccions = 0;
+        
+        // Contar el total de acciones en todas las asociaciones
+        for (int i = 0; i < this.associacions.length; i++) {
+            nTotalAccions = nTotalAccions + associacions[i].getTotalAccions();
+        }
+    
+        accio[] llistaFinal = new accio[nTotalAccions];
+    
+        // Recorrer las asociaciones y sus acciones
+        for (int i = 0; i < this.associacions.length; i++) {
+            accio[] llista = new accio[this.associacions[i].getTotalAccions()];
+    
+            // Recorrer las acciones dentro de cada asociación
+            for (int j = 0; j < llista.length; j++) {
+                if (llista[j] instanceof Xerrada) {  // Verificar si la acción es una instancia de Xerrada
+                    Xerrada xerrada = (Xerrada) llista[j];  // Hacer el cast a Xerrada
+                    if (xerrada.getData().after(dataInici) && xerrada.getData().before(dataFi)) {
+                        llistaFinal[comptador] = llista[j];  // Añadir la Xerrada al arreglo final
+                        comptador++;  // Incrementar el contador para la siguiente posición en llistaFinal
+                    }
+                }
             }
         }
+    
+        return llistaFinal;
     }
+    
 
     /**
      * Afegeix una nova xerrada a la llista de xerrades.

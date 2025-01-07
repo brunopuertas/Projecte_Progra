@@ -2,7 +2,6 @@ package utilitats;
 
 import dades.*;
 import dades.tipusMembre.*;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;

@@ -1,5 +1,6 @@
 package dades;
 import dades.tipusMembre.*;
+import excepcions.*;
 
 public class associacio {
     // Atributs
@@ -46,27 +47,28 @@ public class associacio {
         return aux;
     }
 
-    public boolean afegirMembre(membre membre) {
-        if (totalMembres < llistaMembres.length) {
-            if (membre.getAssociacions() >= 3) {
-                return false; //LLencem un error si el membre ja està en 3 associacions (Excepcio especial)
+    public void afegirMembre(membre membre) throws maxAssociacionsExcedit, maxMembresExcedit {
+        if (totalMembres >= llistaMembres.length) {
+            throw new maxMembresExcedit(membre);
+        } else {
+            if (membre.getAssociacions() > 3) {
+                throw new maxAssociacionsExcedit(membre);
             } else {
                 membre.setAssociacions(membre.getAssociacions() + 1);
                 llistaMembres[totalMembres++] = membre;
                 membre.isActiu();
             }
-            return true;
         }
-        return false;
     }
 
     // Afegir acció
-    public boolean afegirAccio(accio accio) {
-        if (totalAccions < llistaAccions.length) {
+    public void afegirAccio(accio accio) throws maxAccioExcedit {
+        if (totalAccions >= llistaAccions.length) {
+            throw new maxAccioExcedit(accio);
+            
+        } else {
             llistaAccions[totalAccions++] = accio;
-            return true;
         }
-        return false;
     }
 
     public membre[] getLlistaMembres() {

@@ -2,6 +2,7 @@ package fitxers;
 
 import dades.*;
 import dades.tipusMembre.*;
+import excepcions.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,7 +20,7 @@ public class gestioFitxers {
      * @param nomFitxer
      * @throws IOException
      */
-    private static associacions llegirFitxer(String nomFitxer) throws IOException {
+    private static associacions llegirFitxer(String nomFitxer) throws IOException, maxAssociacionsExcedit, maxMembresExcedit, maxAccioExcedit {
         associacions aux = new associacions(100);
 
         String linea;
@@ -175,11 +176,19 @@ public class gestioFitxers {
                 if (linea.isBlank()) {
                     associacio a = new associacio(nom, correu, totalMembres, totalAccions);
                     for (int i = 0; i < totalMembres; i++) {
-                        a.afegirMembre(llistaMembres[i]);
+                        try {
+                            a.afegirMembre(llistaMembres[i]);
+                        } catch (maxMembresExcedit e) {
+                            System.out.println("Error: " + e.getMessage());
+                        }
                     }
                     a.definirPresident((alumne) carrec[0]); a.definirSecretari((alumne) carrec[1]); a.definirTresorer((alumne) carrec[2]);
                     for (int i = 0; i < totalAccions; i++) {
-                        a.afegirAccio(llistaAccions[i]);
+                        try {
+                            a.afegirAccio(llistaAccions[i]);
+                        } catch (maxAccioExcedit e) {
+                            System.out.println("Error: " + e.getMessage());
+                        } 
                     }
                     aux.afegirAssociacio(a);
                     numLinia = 0;

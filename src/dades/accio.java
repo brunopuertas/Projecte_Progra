@@ -44,9 +44,6 @@ public abstract class accio {
     public String getAssociacio() {
         return associacio;
     }
-    public String getmembreResponsable(){
-        return membreResponsable;
-    }
 
     public String toString() {
         return "L'acció amb codi " + cod_Accio + "\nAnomenada " + nom +

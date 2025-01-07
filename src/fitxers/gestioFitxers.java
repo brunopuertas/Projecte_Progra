@@ -122,7 +122,7 @@ public class gestioFitxers {
                     while (tokens.hasMoreTokens()) {
                         String token = tokens.nextToken();
                         switch (token) {
-                            case "Associacio":
+                            case "Associació":
                                 associacio = tokens.nextToken();
                                 titol = tokens.nextToken();
                                 responsable = tokens.nextToken();
@@ -247,13 +247,19 @@ public class gestioFitxers {
                         Xerrada x = (Xerrada) ac;
                         escriptor.write("Xerrada;" + x.getData() + ";" + x.getAssistencies() + ";" + x.getValoracioMitjana() + ";" + x.getTotalMembres() + "\n");
                         for (int j = 0; j < x.getTotalMembres(); j++) {
-                            membre m = x.getMembre(j);
-                            if (m instanceof professor) {
-                                professor p = (professor) m;
-                                escriptor.write("Professor;" + p.getAlias() + ";" + p.getCorreuElectronic() + ";" + p.getAssociacions() + ";" + p.getNomDepartament() + ";" + p.numDespatx() + "\n");
-                            } else if (m instanceof alumne) {
-                                alumne al = (alumne) m;
-                                escriptor.write("Alumne;" + al.getAlias() + ";" + al.getCorreuElectronic() + ";" + al.getAssociacions() + ";" + al.getEnsenyament() + ";" + al.getDataMatricula() + ";" + al.getGraduat() + "\n");
+                            membre m;
+                            try {
+                                m = x.getMembre(j);
+                                if (m instanceof professor) {
+                                    professor p = (professor) m;
+                                    escriptor.write("Professor;" + p.getAlias() + ";" + p.getCorreuElectronic() + ";" + p.getAssociacions() + ";" + p.getNomDepartament() + ";" + p.numDespatx() + "\n");
+                                } else if (m instanceof alumne) {
+                                    alumne al = (alumne) m;
+                                    escriptor.write("Alumne;" + al.getAlias() + ";" + al.getCorreuElectronic() + ";" + al.getAssociacions() + ";" + al.getEnsenyament() + ";" + al.getDataMatricula() + ";" + al.getGraduat() + "\n");
+                                }
+                            } catch (llistaMembresBuida e) {
+                                System.out.println("Error: " + e.getMessage());
+                                continue;
                             }
                         }
                         escriptor.write("XerradaAmbMembres\n");

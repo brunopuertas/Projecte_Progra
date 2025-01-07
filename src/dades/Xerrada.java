@@ -51,11 +51,12 @@ public class Xerrada extends accio {
      * @param index
      * @return membres[index]
      */
-    public membre getMembre(int index) {
+    public membre getMembre(int index) throws llistaMembresBuida {
         if (index >= 0 && index < membres.length && membres[index] != null) {
             return membres[index].copia();
+        } else {
+            throw new llistaMembresBuida(); // Excepcion?
         }
-        return null;
     }
 
     /**

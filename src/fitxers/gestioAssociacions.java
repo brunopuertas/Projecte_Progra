@@ -7,7 +7,7 @@ public class gestioAssociacions {
     public static void storeData (associacions[] associacions) {
         ObjectOutputStream outputFile;
         try {
-        outputFile = new ObjectOutputStream(new FileOutputStream("vehicles.ser"));
+        outputFile = new ObjectOutputStream(new FileOutputStream("storeData.ser"));
             for (associacions associacio : associacions) {
             outputFile.writeObject(associacio);
             }
@@ -20,7 +20,7 @@ public class gestioAssociacions {
     public static void readData (associacions[] associacions) {
         ObjectInputStream inputFile;
         try {
-            inputFile = new ObjectInputStream(new FileInputStream("vehicles.ser"));
+            inputFile = new ObjectInputStream(new FileInputStream("storeData.ser"));
             for (int i=0; i<associacions.length; i++) {
                 associacions[i] = (associacions)inputFile.readObject();
             }

@@ -1,0 +1,45 @@
+public class MainWindow extends JFrame {
+    private JComboBox<Associacio> comboAssociacions;
+    private JButton btnMostrarDemostracions;
+    private JTable taulaDemostracions;
+    private JTextArea textAreaDetall;
+    
+    public MainWindow() {
+        // Configurar la finestra principal
+        setTitle("Aplicació de Demostracions");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null); // Centrar la finestra
+        
+        // Crear els components
+        initComponents();
+    }
+    
+    private void initComponents() {
+        // Exemple: Afegir un JComboBox per seleccionar associacions
+        comboAssociacions = new JComboBox<>();
+        // Omplir el JComboBox amb les associacions disponibles
+        
+        // Exemple: Afegir un JButton per carregar les demostracions
+        btnMostrarDemostracions = new JButton("Mostrar Demostracions");
+        btnMostrarDemostracions.addActionListener(e -> mostrarDemostracions());
+        
+        // Exemple: Afegir una taula per mostrar les demostracions
+        taulaDemostracions = new JTable();
+        
+        // Exemple: Afegir un JTextArea per mostrar el detall d'una demostració
+        textAreaDetall = new JTextArea();
+        
+        // Organitzar els components amb un Layout
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(comboAssociacions, BorderLayout.NORTH);
+        panel.add(new JScrollPane(taulaDemostracions), BorderLayout.CENTER);
+        panel.add(textAreaDetall, BorderLayout.SOUTH);
+        add(panel);
+    }
+    
+    // Funció per mostrar les demostracions filtrades
+    private void mostrarDemostracions() {
+        // Aquí anirà la lògica per filtrar i mostrar les demostracions actives.
+    }
+}

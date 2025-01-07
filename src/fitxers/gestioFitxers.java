@@ -28,23 +28,20 @@ public class gestioFitxers {
         String correu = "";
         int numLinia = 0;
 
-        membre[] llistaMembres = new membre[100];
-        int totalMembres = 0;
         // Variables membre
         String alias;String correuElectronic;int associacions;
+        membre[] llistaMembres = new membre[100];
+        int totalMembres = 0;
         // Variables professor
         String nomDepartament;int numDespatx;
         // Variables alumne
         SiglasTitulacio ensenyament;int dataMatricula;boolean graduat;
-
         // Variables carrec
         membre[] carrec = new membre[3];
-
+        // Variables accio
         accio[] llistaAccions = new accio[100];
         int totalAccions = 0;
-        // Variables accio
-        String associacio = "";String titol = "" ;String responsable = "" ;String codi_Accio = "";
-        Date data = null;
+        String associacio = "";String titol = "" ;String responsable = "" ;String codi_Accio = ""; Date data = null;
         // Variables demostracio
         boolean activa; int repeticions=0;float costMaterials;
         // Variables Xerrada
@@ -60,7 +57,7 @@ public class gestioFitxers {
                 StringTokenizer tokens = new StringTokenizer(linea, ";");
 
                 if (numLinia == 1) {
-                    // Procesar la primera línea de cada asociación (nombre, correo, etc.)
+                    // Procesem la primera línea de cada asociació amb les seves variables generals
                     while (tokens.hasMoreTokens()) {
                         nom = tokens.nextToken();
                         correu = tokens.nextToken();
@@ -69,11 +66,11 @@ public class gestioFitxers {
                         totalMembres = 0;
                         totalAccions = 0;
                     }
-                    processantMembres = true; // Pasamos a la sección de membres
+                    processantMembres = true; // Primer passem a la secció de membres
                     continue;
                 }
-                if (processantMembres && !linea.isBlank()) {
-                    // Procesar els membres
+                // Processem els membres
+                if (processantMembres && !linea.equals("---")) {
                     while (tokens.hasMoreTokens()) {
                         switch (tokens.nextToken()) {
                             case "Professor":
@@ -113,13 +110,13 @@ public class gestioFitxers {
                         }
                     }
                 }
-
+                // Si la línea té aquest format "---", ha acabat de processar els membres
                 if (linea.equals("---")) {
                     // Cambiar de secció al trobar el delimitador ---
                     processantMembres = false;
                     processantAccions = true;
                 }
-
+                // Processem les accions
                 if (processantAccions && !linea.isBlank()) {
                     // Procesar les accions
                     while (tokens.hasMoreTokens()) {
@@ -165,7 +162,12 @@ public class gestioFitxers {
                                 Xerrada xerrada = new Xerrada(associacio, titol, responsable, data, totalMembresXerrada, assistencies, valoracioMitjana);
                                 membresXerrada = new membre[totalMembresXerrada];
                                 for (int i = 0; i < totalMembresXerrada; i++) {
-                                    xerrada.afegirMembre(membresXerrada[i]);
+                                    try {
+                                        xerrada.afegirMembre(membresXerrada[i]);
+                                    } catch (maxMembresExcedit e) {
+                                        System.out.println("Error: " + e.getMessage() + "3 membres Màxim.");
+                                        break;
+                                    }    
                                 }
                                 llistaAccions[totalAccions++] = xerrada;
                                 break;
@@ -173,6 +175,7 @@ public class gestioFitxers {
                     }
                 }
 
+                // Si la línea està en blanc, ha acabat de processar l'associació
                 if (linea.isBlank()) {
                     associacio a = new associacio(nom, correu, totalMembres, totalAccions);
                     for (int i = 0; i < totalMembres; i++) {
@@ -198,6 +201,7 @@ public class gestioFitxers {
             e.printStackTrace();
             lector.close();      
         }
+        lector.close();   
         return aux;
     }
 
@@ -268,7 +272,6 @@ public class gestioFitxers {
      */
     public static void crearFitxer (String nomFitxers){
         File fitxer = new File(nomFitxers);
-
         try {
             if (fitxer.createNewFile()) {
                 System.out.println("Fitxer creat: " + fitxer.getName());

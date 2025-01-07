@@ -6,7 +6,7 @@ public class membre {
     protected int associacions;
     protected boolean actiu=false;
 
-       /**
+    /**
      * Constructor inicialitzat amb parametres d'entrada
      * Encarregat de crearla classe alumnes amb els parametres d'entrada
      * @param alias

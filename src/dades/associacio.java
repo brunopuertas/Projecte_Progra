@@ -3,7 +3,6 @@ import dades.tipusMembre.*;
 import excepcions.*;
 
 public class associacio {
-    // Atributs
     private final String nom;
     private final String correu;
     private final membre[] llistaMembres;
@@ -13,7 +12,14 @@ public class associacio {
     private int totalAccions;
     
 
-    // Constructor
+    /**
+     * Constructor inicialitzat amb parametres d'entrada
+     * Encarregat de crear la classe associacio amb els parametres d'entrada
+     * @param nom
+     * @param correu
+     * @param maxMembres
+     * @param maxAccions
+     */
     public associacio(String nom, String correu, int maxMembres, int maxAccions) {
         this.nom = nom;
         this.correu = correu;
@@ -24,16 +30,26 @@ public class associacio {
         this.carrecs = new membre[3];
     }
 
-    // Mètode per obtenir el nom
+    /**
+     * Mètode per obtenir el nom
+     * @return nom
+     */
     public String getNom() {
         return nom;
     }
 
-    // Mètode per obtenir el correu
+    /**
+     * Mètode per obtenir el correu
+     * @return correu
+     */
     public String getCorreu() {
         return correu;
     }
 
+    /**
+     * Mètode encarregat de retornar un string amb les dades de l'associació
+     * @return aux
+     */
     public String toString() {
         String aux;
         aux = "La associació "+ this.nom +" té el correu: "+ this.correu +".\nTé un total de "+totalMembres+" i aquests són:";
@@ -47,6 +63,13 @@ public class associacio {
         return aux;
     }
 
+    /**
+     * Mètode per afegir un membre a l'associació
+     * Implementa les excepcions maxAssociacionsExcedit i maxMembresExcedit
+     * @param membre
+     * @throws maxAssociacionsExcedit
+     * @throws maxMembresExcedit
+     */
     public void afegirMembre(membre membre) throws maxAssociacionsExcedit, maxMembresExcedit {
         if (totalMembres >= llistaMembres.length) {
             throw new maxMembresExcedit(membre);
@@ -61,7 +84,12 @@ public class associacio {
         }
     }
 
-    // Afegir acció
+    /**
+     * Mètode per afegir una acció a l'associació
+     * Implementa l'excepció maxAccioExcedit
+     * @param accio
+     * @throws maxAccioExcedit
+     */
     public void afegirAccio(accio accio) throws maxAccioExcedit {
         if (totalAccions >= llistaAccions.length) {
             throw new maxAccioExcedit(accio);
@@ -71,27 +99,56 @@ public class associacio {
         }
     }
 
+    /**
+     * Mètode per obtenir els membres de l'associació
+     * @param membre
+     * @return llistaMembres
+     */
     public membre[] getLlistaMembres() {
         return this.llistaMembres;
     }
 
+    /**
+     * Mètode per obtenir un membre de l'associació
+     * @param accio
+     * @return llistaMembres[index]
+     */
     public membre getMembre(int index) {
         return this.llistaMembres[index];
     }
 
+    /**
+     * Mètode per obtenir el total de membres
+     * @return totalMembres
+     */
     public int getTotalMembres() {
         return totalMembres;
     }
 
+    /**
+     * Mètode per obtenir una acció de l'associació
+     * @param index
+     * @return llistaAccions[index]
+     */
     public accio getAccio(int index) {
         return this.llistaAccions[index];
     }
 
+    /**
+     * Mètode per obtenir el total d'accions
+     * @return totalAccions
+     */
     public int getTotalAccions() {
         return totalAccions;
     }
 
-    // Llistar membres amb filtre
+    /**
+     * Mètode per obtenir els membres d'una maera filtrada
+     * Els paràmetres solsAlumnes i solsProfessors permeten filtrar la llista
+     * @param solsAlumnes
+     * @param solsProfessors
+     * @return finalResultat
+     */
     public membre[] llistaMembresFiltrat(boolean solsAlumnes, boolean solsProfessors) {
         int contador = 0;
         for (int i = 0; i < totalMembres; i++) {
@@ -112,7 +169,10 @@ public class associacio {
         return finalResultat;
     }
 
-    // Llistar accions
+    /**
+     * Mètode que retorna totes les accions
+     * @return resultat
+     */
     public accio[] llistaAccions() {
         accio[] resultat = new accio[totalAccions];
         for (int i = 0; i < totalAccions; i++) {
@@ -121,6 +181,10 @@ public class associacio {
         return resultat;
     }
 
+    /**
+     * Mètode per definir un President
+     * @param a
+     */
     public void definirPresident(alumne a) {
         boolean pertany = false;
         int i = 0;
@@ -134,6 +198,10 @@ public class associacio {
         }
     }
 
+    /**
+     * Mètode per definir un Secretari
+     * @param a
+     */
     public void definirSecretari(alumne a) {
         boolean pertany = false;
         int i = 0;
@@ -147,6 +215,10 @@ public class associacio {
         }
     }
 
+    /**
+     * Mètode per definir un Tresorer
+     * @param a
+     */
     public void definirTresorer(alumne a) {
         boolean pertany = false;
         int i = 0;
@@ -160,14 +232,26 @@ public class associacio {
         }
     }
 
+    /**
+     * Mètode per obtenir el President
+     * @return carrecs[0]
+     */
     public membre getPresident() {
         return carrecs[0];
     }
 
+    /**
+     * Mètode per obtenir el Secretari
+     * @return carrecs[1]
+     */
     public membre getSecretari() {
         return carrecs[1];
     }
 
+    /**
+     * Mètode per obtenir el Tresorer
+     * @return carrecs[2]
+     */
     public membre getTresorer() {
         return carrecs[2];
     }

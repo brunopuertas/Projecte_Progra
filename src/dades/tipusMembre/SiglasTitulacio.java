@@ -9,6 +9,9 @@ public enum SiglasTitulacio {
     EMF,  // Enginyeria Matemàtica i Física
     TDAWM;   // Tècniques de Desenvolupament d'Aplicacions Web i Mòbils
 
+    /**
+     * Mètode que retorna la representació en String de la titulació.
+     */
     @Override
     public String toString() {
         switch (this) {

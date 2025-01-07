@@ -183,35 +183,57 @@ public class gestioFitxers {
         return aux;
     }
 
-        private static void escriureFitxer(String nomFitxer, associacions Associacions) throws IOException {
+    private static void escriureFitxer(String nomFitxer, associacions Associacions) throws IOException {
         BufferedWriter escriptor = new BufferedWriter(new FileWriter(nomFitxer));
         try {
             for (int i = 0; i < Associacions.getCount(); i++) {
-            associacio a = Associacions.getAssociacio(i);
-            escriptor.write(a.getNom() + ";" + a.getCorreu() + "\n");
-            membre presi  = a.getPresident();
-            escriptor.write("President;" + presi.getAlias() + ";" + presi.getCorreuElectronic() + ";" + presi.getAssociacions() + ";" + ((alumne) presi).getEnsenyament() + ";" + ((alumne) presi).getDataMatricula() + ";" + ((alumne) presi).getGraduat() + "\n");
-            membre secre  = a.getSecretari();
-            escriptor.write("Secretari;" + secre.getAlias() + ";" + secre.getCorreuElectronic() + ";" + secre.getAssociacions() + ";" + ((alumne) secre).getEnsenyament() + ";" + ((alumne) secre).getDataMatricula() + ";" + ((alumne) secre).getGraduat() + "\n");
-            membre treso  = a.getTresorer();
-            escriptor.write("Tresorer;" + treso.getAlias() + ";" + treso.getCorreuElectronic() + ";" + treso.getAssociacions() + ";" + ((alumne) treso).getEnsenyament() + ";" + ((alumne) treso).getDataMatricula() + ";" + ((alumne) treso).getGraduat() + "\n"); 
-            for (int j = 0; j < a.getTotalMembres(); j++) {
-                membre m = a.getMembre(j);
-                if (m instanceof professor p) {
-                escriptor.write("Professor;" + p.getAlias() + ";" + p.getCorreuElectronic() + ";" + p.getAssociacions() + ";" + p.getNomDepartament() + ";" + p.numDespatx() + "\n");
-                } else if (m instanceof alumne al) {
-                escriptor.write("Alumne;" + al.getAlias() + ";" + al.getCorreuElectronic() + ";" + al.getAssociacions() + ";" + al.getEnsenyament() + ";" + al.getDataMatricula() + ";" + al.getGraduat() + "\n");
+                associacio aux = Associacions.getAssociacio(i);
+                escriptor.write(aux.getNom() + ";" + aux.getCorreu() + "\n");
+                membre presi  = aux.getPresident();
+                escriptor.write("President;" + presi.getAlias() + ";" + presi.getCorreuElectronic() + ";" + presi.getAssociacions() + ";" + ((alumne) presi).getEnsenyament() + ";" + ((alumne) presi).getDataMatricula() + ";" + ((alumne) presi).getGraduat() + "\n");
+                membre secre  = aux.getSecretari();
+                escriptor.write("Secretari;" + secre.getAlias() + ";" + secre.getCorreuElectronic() + ";" + secre.getAssociacions() + ";" + ((alumne) secre).getEnsenyament() + ";" + ((alumne) secre).getDataMatricula() + ";" + ((alumne) secre).getGraduat() + "\n");
+
+                membre treso  = aux.getTresorer();
+                escriptor.write("Tresorer;" + treso.getAlias() + ";" + treso.getCorreuElectronic() + ";" + treso.getAssociacions() + ";" + ((alumne) treso).getEnsenyament() + ";" + ((alumne) treso).getDataMatricula() + ";" + ((alumne) treso).getGraduat() + "\n"); 
+                escriptor.write("---\n");
+
+                for (int j = 0; j < aux.getTotalMembres(); j++) {
+                membre m = aux.getMembre(j);
+                    if (m instanceof professor) {
+                        professor p = (professor) m;
+                        escriptor.write("Professor;" + p.getAlias() + ";" + p.getCorreuElectronic() + ";" + p.getAssociacions() + ";" + p.getNomDepartament() + ";" + p.numDespatx() + "\n");
+                    } else if (m instanceof alumne) {
+                        alumne al = (alumne) m;
+                        escriptor.write("Alumne;" + al.getAlias() + ";" + al.getCorreuElectronic() + ";" + al.getAssociacions() + ";" + al.getEnsenyament() + ";" + al.getDataMatricula() + ";" + al.getGraduat() + "\n");
+                    }
+                }
+                for (int k = 0; k < aux.getTotalAccions(); k++) {
+                    accio ac = aux.getAccio(k);
+                    escriptor.write("Associacio;" + ac.getAssociacio() + ";" + ac.getNom() + ";" + ac.getMembreResponsable() + ";" + ac.getCodAccio() + ";\n");
+
+                    if (ac instanceof demostracio) {
+                        demostracio d = (demostracio) ac;
+                        escriptor.write("Demostracio;" + d.getDataDisseny() + ";" + d.esActiva() + ";" + d.getRepeticions() + ";" + d.getCostMaterials() + "\n");
+                    } else if (ac instanceof Xerrada) {
+                        Xerrada x = (Xerrada) ac;
+                        escriptor.write("Xerrada;" + x.getData() + ";" + x.getAssistencies() + ";" + x.getValoracioMitjana() + ";" + x.getTotalMembres() + "\n");
+                        for (int j = 0; j < x.getTotalMembres(); j++) {
+                            membre m = x.getMembre(j);
+                            if (m instanceof professor) {
+                                professor p = (professor) m;
+                                escriptor.write("Professor;" + p.getAlias() + ";" + p.getCorreuElectronic() + ";" + p.getAssociacions() + ";" + p.getNomDepartament() + ";" + p.numDespatx() + "\n");
+                            } else if (m instanceof alumne) {
+                                alumne al = (alumne) m;
+                                escriptor.write("Alumne;" + al.getAlias() + ";" + al.getCorreuElectronic() + ";" + al.getAssociacions() + ";" + al.getEnsenyament() + ";" + al.getDataMatricula() + ";" + al.getGraduat() + "\n");
+                            }
+                        }
+                        escriptor.write("XerradaAmbMembres\n");
+                    }
                 }
             }
-            escriptor.write("---\n");
-            for (int k = 0; k < a.getTotalAccions(); k++) {
-                accio ac = a.getAccio(k);
-                escriptor.write("Associacio;" + ac.getAssociacio() + ";" + ac.getNom() + ";" + ac.getMembreResponsable() + ";" + ac.getCodAccio() + ";\n");
-            }
-            }
         } catch (IOException e) {
-            e.printStackTrace();
-        } 
-        escriptor.close();
+            escriptor.close();
+        }
     }
 }

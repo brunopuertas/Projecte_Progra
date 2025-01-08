@@ -50,6 +50,7 @@ public class associacio {
      * Mètode encarregat de retornar un string amb les dades de l'associació
      * @return aux
      */
+    @Override
     public String toString() {
         String aux;
         aux = "La associació "+ this.nom +" té el correu: "+ this.correu +".\nTé un total de "+totalMembres+" i aquests són:";

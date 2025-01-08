@@ -1,0 +1,96 @@
+InnoTech;innovacion.tecnologia@gmail.com;
+President;Juan Pérez;juan.perez@gmail.com;1;EI;2023;true
+Secretari;María Fernández;maria.fernandez@gmail.com;2;ESST;2022;true
+Tresorer;Pedro López;pedro.lopez@gmail.com;1;EEIA;2021;true
+Professor;Carlos Martínez;Carlos.martinez@gmail.com;1;EMF;102
+Alumne;Juan García;juan.garcia@gmail.com;1;EI;2023;false
+Professor;Laura González;laura.gonzalez@gmail.com;2;EE;101
+Alumne;Ana López;ana.lopez@gmail.com;1;TDAWM;2021;true
+Professor;Javier Ramírez;javier.ramirez@gmail.com;1;EMF;103
+Alumne;Beatriz Sánchez;beatriz.sanchez@gmail.com;2;ESST;2022;false
+---
+Associacio;Associació d'Innovació en Tecnologia;Fira d'Innovació en Enginyeria;Javier Ramirez;A001;
+Demostracio;2023-01-01;true;5;50.0
+Associacio;Associació d'Innovació en Tecnologia;ConferènciasobreIntelligènciaArtificial;JavierRamirez;A001;
+Xerrada;2023-02-10;50;4.5;200
+Professor;CarlosMartínez;Carlos.martinez@gmail.com;1;EMF;102
+Alumne;Juan García;juan.garcia@gmail.com;1;EI;2023;false
+Professor;Laura González;laura.gonzalez@gmail.com;2;EE;101
+Alumne;Ana López;ana.lopez@gmail.com;1;TDAWM;2021;true
+XerradaAmbMembres;
+
+Associació de Telecomunicacions i Xarxes;telecomunicaciones.redes@gmail.com;
+President;José García;jose.garcia@gmail.com;2;ESST;2022;false
+Secretari;Carolina Ortiz;carolina.ortiz@gmail.com;2;TDAWM;2021;true
+Tresorer;Lucía Álvarez;lucia.alvarez@gmail.com;1;EI;2021;false
+Professor;Silvia Gómez;silvia.gomez@gmail.com;1;EMF;104
+Alumne;Carlos López;carlos.lopez@gmail.com;2;EEIA;2023;false
+Professor;Juan Martín;juan.martin@gmail.com;1;EEIA;105
+Alumne;Sandra Pérez;sandra.perez@gmail.com;1;EB;2022;true
+Professor;Andrés Rodríguez;andres.rodriguez@gmail.com;1;TDAWM;106
+Alumne;Rocío Fernández;rocio.fernandez@gmail.com;2;ESST;2021;false
+---
+Associacio;Associació de Telecomunicacions i Xarxes;Congrés de Tecnologia i Futur;Juan Martin;A002;
+Demostracio;2023-03-15;true;3;70.0
+Associacio;Associació de Telecomunicacions i Xarxes;Taula Rodona sobre el Futur de les Xarxes;Juan Martin;A002;
+Xerrada;2023-04-05;45;4.3;180
+Professor;Silvia Gómez;silvia.gomez@gmail.com;1;EMF;104
+Alumne;Carlos López;carlos.lopez@gmail.com;2;EEIA;2023;false
+XerradaAmbMembres;
+
+Associació de Ciència i Salut;ciencia.salud@gmail.com;
+President;Clara Martínez;clara.martinez@gmail.com;3;EB;2021;true
+Secretari;Laura Díaz;laura.diaz@gmail.com;2;EI;2022;false
+Tresorer;David Rodríguez;david.rodriguez@gmail.com;1;ESST;2020;true
+Professor;José López;jose.lopez@gmail.com;3;EE;106
+Alumne;Marta García;marta.garcia@gmail.com;1;EMF;2023;false
+Professor;Raúl Sánchez;raul.sanchez@gmail.com;2;TDAWM;107
+Alumne;Luis González;luis.gonzalez@gmail.com;2;EEIA;2022;true
+Professor;Patricia Morales;patricia.morales@gmail.com;3;EB;108
+Alumne;Elena Pérez;elena.perez@gmail.com;1;TDAWM;2023;false
+---
+Associacio;Associació de Ciència i Salut;Congrés sobre Medicina i Tecnologia;Raul Sanchez;A003;
+Demostracio;2023-06-25;true;6;120.0
+Associacio;Associació de Ciència i Salut;Seminari sobre Avanços en Biomedicina;Raul Sanchez;A003;
+Xerrada;2023-07-12;60;4.8;220
+Professor;José López;jose.lopez@gmail.com;3;EE;106
+Alumne;Marta García;marta.garcia@gmail.com;1;EMF;2023;false
+XerradaAmbMembres;
+
+Associació de Tecnologia i Desenvolupament Web;desarrollo.web@gmail.com;
+President;Martín García;martin.garcia@gmail.com;3;TDAWM;2023;true
+Secretari;Clara González;clara.gonzalez@gmail.com;1;TDAWM;2022;false
+Tresorer;Antonio Rodríguez;antonio.rodriguez@gmail.com;1;EI;2021;true
+Professor;Carlos Martínez;carlo.martinez@gmail.com;3;TDAWM;109
+Alumne;Francisco Díaz;francisco.diaz@gmail.com;2;EB;2023;false
+Professor;María Álvarez;maria.alvarez@gmail.com;3;EMF;110
+Alumne;Raquel Sánchez;raquel.sanchez@gmail.com;2;ESST;2022;true
+Professor;David Ruiz;david.ruiz@gmail.com;1;EEIA;111
+Alumne;José Pérez;jose.perez@gmail.com;2;TDAWM;2023;false
+---
+Associacio;Associació de Tecnologia i Desenvolupament Web;Hackathon de Programació;Carlo Martinez;A004;
+Demostracio;2023-08-10;true;7;150.0
+Associacio;Associació de Tecnologia i Desenvolupament Web;Taller sobre Disseny d'Aplicacions Mòbils;Carlo Martinez;A004;
+Xerrada;2023-09-20;40;4.6;250
+Professor;Carlos Martínez;carlo.martinez@gmail.com;3;TDAWM;109
+Alumne;Francisco Díaz;francisco.diaz@gmail.com;2;EB;2023;false
+XerradaAmbMembres;
+
+Associació d'Enginyeria Elèctrica;ingenieria.electrica@gmail.com;
+President;Javier Molina;javier.molina@gmail.com;1;EEIA;2021;false
+Secretari;Sara Jiménez;sara.jimenez@gmail.com;1;EMF;2022;true
+Tresorer;Raúl Pérez;raul.perez@gmail.com;2;EE;2020;true
+Professor;Luis Ramírez;luis.ramirez@gmail.com;1;EI;112
+Alumne;Ricardo Torres;ricardo.torres@gmail.com;2;TDAWM;2023;false
+Professor;Carlos Fernández;carlo.fernandez@gmail.com;3;EEIA;113
+Alumne;Luis Martín;luismartin@gmail.com;1;TDAWM;2021;true
+Professor;David Fernández;david.fernandez@gmail.com;3;EMF;114
+Alumne;Andrea López;andrea.lopez@gmail.com;2;ESST;2022;false
+---
+Associacio;Associació d'Enginyeria Elèctrica;Conferència sobre Energia Sostenible;Luis Ramirez;A005;
+Demostracio;2023-10-05;true;8;90.0
+Associacio;Associació d'Enginyeria Elèctrica;Seminari sobre Xarxes Elèctriques Intel·ligents;Luis Ramirez;A005;
+Xerrada;2023-11-15;55;4.7;180
+Professor;Carlos Fernández;carlo.fernandez@gmail.com;3;EEIA;113
+Alumne;Luis Martín;luismartin@gmail.com;1;TDAWM;2021;true
+XerradaAmbMembres;

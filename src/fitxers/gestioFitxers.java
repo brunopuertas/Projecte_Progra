@@ -20,7 +20,7 @@ public class gestioFitxers {
      * @param nomFitxer
      * @throws IOException
      */
-    private static associacions llegirFitxer(String nomFitxer) throws IOException, maxAssociacionsExcedit, maxMembresExcedit, maxAccioExcedit {
+    public static associacions llegirFitxer(String nomFitxer) throws IOException, maxAssociacionsExcedit, maxMembresExcedit, maxAccioExcedit {
         associacions aux = new associacions(100);
 
         String linea;
@@ -122,7 +122,7 @@ public class gestioFitxers {
                     while (tokens.hasMoreTokens()) {
                         String token = tokens.nextToken();
                         switch (token) {
-                            case "Associació":
+                            case "Associacio":
                                 associacio = tokens.nextToken();
                                 titol = tokens.nextToken();
                                 responsable = tokens.nextToken();
@@ -211,7 +211,7 @@ public class gestioFitxers {
      * @param Associacions
      * @throws IOException
      */
-    private static void escriureFitxer(String nomFitxer, associacions Associacions) throws IOException {
+    public static void escriureFitxer(String nomFitxer, associacions Associacions) throws IOException {
         BufferedWriter escriptor = new BufferedWriter(new FileWriter(nomFitxer));
         try {
             for (int i = 0; i < Associacions.getCount(); i++) {
@@ -259,7 +259,6 @@ public class gestioFitxers {
                                 }
                             } catch (llistaMembresBuida e) {
                                 System.out.println("Error: " + e.getMessage());
-                                continue;
                             }
                         }
                         escriptor.write("XerradaAmbMembres\n");

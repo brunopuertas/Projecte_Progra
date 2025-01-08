@@ -107,7 +107,7 @@ public class Xerrada extends accio {
      */
     public void afegirMembre(membre membre) throws maxMembresExcedit {
         if (totalMembres < membres.length) {
-            membres[totalMembres++] = membre.copia();
+            membres[totalMembres++] = membre;
         } else {
             throw new maxMembresExcedit(membre);
         }
